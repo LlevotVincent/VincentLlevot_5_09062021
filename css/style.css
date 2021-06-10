@@ -58,11 +58,21 @@ body{
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
-    width: auto;
-    height: auto;
+    max-width: 170px;
+    max-height: 69px;
     margin-right: 20px;
     border-radius: 5px;}
 
+.result__text {
+    width: 60%;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    background: transparent;
+    outline: none;
+    border: none;
+    margin: 0 15px;
+}
 
 #filterbox{
     display: flex;
@@ -103,7 +113,47 @@ body{
 ::placeholder{
     color: white;
 }
-.fa-chevron-down{
+.fa-chevron-down, .fa-times-circle{
     margin-right: 18px;
     color: white;
+}
+
+
+    /* Grille recette*/
+#main_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 364px 364px;
+    grid-gap: 50px;
+    margin-top: 25px;
+}
+.cooking_recipe {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto;}
+
+.img_food, .ingredients, .step {
+    background-color: #E7E7E7;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+}
+.a {
+    background-color: #C7BEBE;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    color: black;
+}
+.b {
+    background-color: #E7E7E7;
+    grid-column: 1 ;
+    grid-row: 2 ;
+    color: black;
+}
+.c {
+    background-color: #E7E7E7;
+    grid-column: 2;
+    grid-row: 2;
+    color: black;
 }
