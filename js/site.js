@@ -1,6 +1,6 @@
 
 //creer un tableau des ingrédients
-const ingredientArray = [];
+var ingredientArray = [];
 createIngredientArray(ingredientArray);
 
 function createIngredientArray (ingredientList){
@@ -15,13 +15,40 @@ function createIngredientArray (ingredientList){
     }
 }
 
+//const applianceArray = [];
+//createapplianceArray(applianceArray);
+
+//function createapplianceArray (applianceList){
+//    for (var i = 0; i < recipes.length; i++) {
+//        let appliance = recipes[i].appliance;
+//            if (!applianceList.includes(appliance)){
+//                applianceList.push(appliance);
+//            }
+//        }
+//    }
+
+
 //trie le tableau ingredients suivant l'input de la barre de recherche Ne fonctionne pas
-const searchBar = document.getElementById("searchbar__text");
+
+let ingredientFilter = []
+let searchBar = document.getElementById("searchbar__text");
+
 searchBar.addEventListener("keyup", function(){
-    console.table(ingredientArray);
-    const inputSearchBar = searchbar__text.value;
-    const ingredientfilter = ingredientArray.filter(item => item.value.includes(inputSearchBar));
-    console.table(ingredientfilter)
+ //console.table(ingredientArray); // vérifie le tableau Ingredient
+
+let inputSearchBar = searchBar.value;
+let ingredientResult = ingredientArray.indexOf(inputSearchBar);
+console.log(ingredientResult)
+while (ingredientResult !== -1){
+    ingredientFilter.push(ingredientResult);
+    ingredientResult = ingredientArray.indexOf(searchBar.value, ingredientResult+1);
+    console.table(ingredientFilter);
+
+}
+
+
+   // const ingredientfilter = ingredientArray.filter(item => item.value.includes(inputSearchBar));
+   // console.table(ingredientfilter)
 });
 
 
