@@ -11,8 +11,8 @@ function noAccent(event){
     ];
     var noaccent = ['A','a','E','e','I','i','O','o','U','u','N','n','C','c'];
     
-    if(ingredientArray.item.includes(accent.item)){
-        ingredientArray.item.replace(accent[i],noaccent[i]);
+    if(ingredientArray.includes(accent)){
+        ingredientArray.replace(accent[i],noaccent[i]);
     }
     console.log(ingredientArray)
 }
