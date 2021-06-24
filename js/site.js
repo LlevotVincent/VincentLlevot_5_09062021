@@ -31,9 +31,9 @@ let searchBar = document.getElementById("searchbar__text");
 searchBar.addEventListener("change", function(){
  console.table(ingredientArray); // vérifie le tableau Ingredient
 let inputSearchBar = searchBar.value.toLowerCase();
-let ingredientIndex = ingredientArray.indexOf(inputSearchBar);
-console.log(ingredientIndex);
 for (var i = 0; i < ingredientArray.length; i++) {
+let ingredientIndex = ingredientArray[i].includes(inputSearchBar);
+console.log(ingredientIndex);
 if (ingredientIndex != -1){
     ingredientFilter.push(ingredientIndex);
     console.table(ingredientFilter);
