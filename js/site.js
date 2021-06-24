@@ -18,7 +18,6 @@ function createIngredientArray (ingredientList){
             let ingredient = ingredients[j].ingredient.toLowerCase();
             if (!ingredientList.includes(ingredient)){
                 let ingredientSplit = ingredient.split(' ');
-                 console.log(ingredientSplit);
                 ingredientList.push(ingredientSplit);
             }
         }
@@ -34,7 +33,7 @@ searchBar.addEventListener("change", function(){
 let inputSearchBar = searchBar.value.toLowerCase();
 let ingredientIndex = ingredientArray.indexOf(inputSearchBar);
 console.log(ingredientIndex);
-for (var i = 0; i < ingredientIndex.length; i++) {
+for (var i = 0; i < ingredientArray.length; i++) {
 if (ingredientIndex != -1){
     ingredientFilter.push(ingredientIndex);
     console.table(ingredientFilter);
