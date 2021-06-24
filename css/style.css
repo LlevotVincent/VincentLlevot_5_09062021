@@ -111,7 +111,7 @@ body{
     margin-left: 15px;
 }
 ::placeholder{
-    color: white;
+    color: rgb(44, 44, 44);
 }
 .fa-chevron-down, .fa-times-circle{
     margin-right: 18px;
