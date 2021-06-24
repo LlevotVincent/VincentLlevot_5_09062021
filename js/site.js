@@ -36,7 +36,7 @@ let ingredientIndex = ingredientArray[i].includes(inputSearchBar);
 console.log(ingredientIndex);
 if (ingredientIndex != -1){
     ingredientFilter.push(ingredientIndex);
-    console.table(ingredientFilter);
+    console.log(ingredientFilter);
 
 }}
 });
