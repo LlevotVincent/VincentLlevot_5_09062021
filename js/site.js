@@ -17,29 +17,73 @@ function createIngredientArray (ingredientList){
         for (var j = 0; j < ingredients.length; j++){
             let ingredient = ingredients[j].ingredient.toLowerCase();
             if (!ingredientList.includes(ingredient)){
-                let ingredientSplit = ingredient.split(' ');
-                ingredientList.push(ingredientSplit);
+                ingredientList.push(ingredient);
+            }
+        }
+    }
+    console.table(ingredientArray); // vérifie le tableau Ingredient
+}
+
+//trie le tableau ingredients suivant l'input de la barre de recherche Ne fonctionne pas
+
+
+
+
+let searchBar = document.getElementById("searchbar__text");
+    searchBar.addEventListener("change", function(){
+let inputSearchBar = searchBar.value.toLowerCase();
+let inputSearchBarSplit = inputSearchBar.split(" ");
+
+if(inputSearchBar.indexOf(" ") == -1){
+    let ingredientArrayFilter = [];
+    for (var i = 0 ; i < ingredientArray.length -1; i++){
+        if(ingredientArray[i].includes(inputSearchBar)){
+            ingredientArrayFilter.push(i);
+        }
+    }
+    console.log(ingredientArrayFilter);
+    for(var i = 0 ; i< ingredientArrayFilter.length -1 ; i++){
+        if(ingredientArray[ingredientArrayFilter[i]]=== inputSearchBar) {
+            console.log("mon ingredient :");
+            console.log(ingredientArray[ingredientArrayFilter[i]])
+        }
+    }
+} else {
+    let inputSearchBarSplit = inputSearchBar.split(" ");
+    let ingredientArrayFilter = [];
+    for(var i = 0 ; i <ingredientArray.length -1; i++){
+        for(var j = 0 ; j <inputSearchBarSplit.length -1; j++){
+            if(ingredientArray[i].includes(inputSearchBarSplit[j])){
+                ingredientArrayFilter.push(i);
             }
         }
     }
 }
+})
 
-//trie le tableau ingredients suivant l'input de la barre de recherche Ne fonctionne pas
-let ingredientFilter = []
-let searchBar = document.getElementById("searchbar__text");
 
-searchBar.addEventListener("change", function(){
- console.table(ingredientArray); // vérifie le tableau Ingredient
-let inputSearchBar = searchBar.value.toLowerCase();
-for (var i = 0; i < ingredientArray.length; i++) {
-let ingredientIndex = ingredientArray[i].includes(inputSearchBar);
-console.log(ingredientIndex);
-if (ingredientIndex != -1){
-    ingredientFilter.push(ingredientIndex);
-    console.log(ingredientFilter);
 
-}}
-});
+// for(var i = 0; i < ingredientArray.length; i++){
+//     if(ingredientArray[i].indexOf(inputSearchBarSplit)){
+//         ingredientArrayFilter.push[i];
+// }
+// }
+// for (var i = 0; i < ingredientArray.length; i++) {
+//     for(var j = 0; j < inputSearchBarSplit.length; j++){
+//         if (ingredientArray[i].includes(inputSearchBarSplit[j])){
+// // let ingredientIndex = ingredientArray[i].includes(inputSearchBar);
+// // if (ingredientIndex != -1){
+//     ingredientArrayFilter.push(i);
+//     console.log(ingredientArrayFilter);
+// }
+// }
+// }
+// }
+// );
+
+
+
+
 
 //const applianceArray = [];
 //createapplianceArray(applianceArray);
