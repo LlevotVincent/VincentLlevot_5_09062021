@@ -34,7 +34,7 @@ let searchBar = document.getElementById("searchbar__text");
 let inputSearchBar = searchBar.value.toLowerCase();
 let inputSearchBarSplit = inputSearchBar.split(" ");
 
-if(inputSearchBar.indexOf(" ") == -1){
+if(inputSearchBarSplit.indexOf(" ") == -1){
     let ingredientArrayFilter = [];
     for (var i = 0 ; i < ingredientArray.length -1; i++){
         if(ingredientArray[i].includes(inputSearchBar)){
@@ -52,7 +52,7 @@ if(inputSearchBar.indexOf(" ") == -1){
     let inputSearchBarSplit = inputSearchBar.split(" ");
     let ingredientArrayFilter = [];
     for(var i = 0 ; i <ingredientArray.length -1; i++){
-        for(var j = 0 ; j <inputSearchBarSplit.length -1; j++){
+        for(var j = 0 ; j < inputSearchBarSplit.length -1; j++){
             if(ingredientArray[i].includes(inputSearchBarSplit[j])){
                 ingredientArrayFilter.push(i);
             }
