@@ -34,15 +34,14 @@ searchBar.addEventListener("change", function(){
 
 if(inputSearchBarSplit.indexOf(" ") == -1){
     for (var i = 0 ; i < ingredientArray.length -1; i++){
+
         if(ingredientArray[i].includes(inputSearchBar)){
-            ingredientArrayFilter.push(i);
-            // let showRecipes = RecipesFilter(ingredient);
-            // console.log(showRecipes);
+            ingredientArrayFilter.push(ingredientArray[i]);
             }
         }
     }
     console.log(ingredientArrayFilter);
-    RecipesFilter()
+    RecipesFilter();
 })
 
 // RecipesFilter()
@@ -53,13 +52,13 @@ if(inputSearchBarSplit.indexOf(" ") == -1){
 
 function RecipesFilter() {
     let recipesFilter = [];
-    let indexIngredientsArray = ingredientArrayFilter[i];
+    // let indexIngredientsArray = ingredientArrayFilter[i];
     for(var i = 0 ; i <recipes.length -1; i++){
         let ingredients = recipes[i].ingredients;
         for(var j = 0 ; j < ingredients.length -1; j++){
             let ingredientFilterList = ingredients[j].ingredient
-            if(ingredientFilterList == indexIngredientsArray){
-                recipesFilter.push(ingredient);
+            if(ingredientArrayFilter == ingredientFilterList){
+                recipesFilter.push(ingredientFilterList);
                 console.log(recipesFilter);
             }
         }
