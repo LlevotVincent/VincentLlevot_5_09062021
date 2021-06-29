@@ -53,18 +53,24 @@ if(inputSearchBarSplit.indexOf(" ") == -1){
 function RecipesFilter() {
     let recipesFilter = [];
     // let indexIngredientsArray = ingredientArrayFilter[i];
-    for(var i = 0 ; i <recipes.length -1; i++){
-        let ingredients = recipes[i].ingredients;
+    for(var i = 0 ; i <ingredientArrayFilter.length -1; i++){
+        let ingredientFilter = ingredientArrayFilter[i];
+
+    for(var k = 0 ; k <recipes.length -1; k++){
+        let ingredients = recipes[k].ingredients;
         for(var j = 0 ; j < ingredients.length -1; j++){
-            let ingredientFilterList = ingredients[j].ingredient
-            if(ingredientArrayFilter == ingredientFilterList){
-                recipesFilter.push(ingredientFilterList);
-                console.log(recipesFilter);
+            let ingredient = ingredients[j].ingredient.toLowerCase();;
+            if( ingredient == ingredientFilter){
+                let recipeName = recipes[k].name;
+                recipesFilter.push(recipeName);
+
             }
         }
     }
-}
 
+}
+console.log(recipesFilter);
+}
 
 
 
