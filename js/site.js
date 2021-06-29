@@ -67,7 +67,6 @@ function RecipesFilter() {
             }
         }
     }
-
 }
 console.log(recipesFilter);
 }
