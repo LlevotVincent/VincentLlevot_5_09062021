@@ -21,26 +21,28 @@ function createIngredientArray (ingredientList){
             }
         }
     }
-    console.table(ingredientArray); // vérifie le tableau Ingredient
+    console.log("liste des ingredients")
+    console.log(ingredientArray); // vérifie le tableau Ingredient
 }
 
 //trie le tableau ingredients suivant l'input de la barre de recherche
 let searchBar = document.getElementById("searchbar__text");
-
+let ingredientArrayFilter = [];
 searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
     let inputSearchBarSplit = inputSearchBar.split(" ");
 
 if(inputSearchBarSplit.indexOf(" ") == -1){
-    let ingredientArrayFilter = [];
     for (var i = 0 ; i < ingredientArray.length -1; i++){
         if(ingredientArray[i].includes(inputSearchBar)){
             ingredientArrayFilter.push(i);
+            // let showRecipes = RecipesFilter(ingredient);
+            // console.log(showRecipes);
             }
         }
-    console.log(ingredientArrayFilter);
-    RecipesFilter(ingredientArrayFilter[i]);
     }
+    console.log(ingredientArrayFilter);
+    RecipesFilter()
 })
 
 // RecipesFilter()
@@ -50,15 +52,14 @@ if(inputSearchBarSplit.indexOf(" ") == -1){
 // //créer un tableau de recette filtrer
 
 function RecipesFilter() {
-    let recipesFilter = []
-
-
+    let recipesFilter = [];
+    let indexIngredientsArray = ingredientArrayFilter[i];
     for(var i = 0 ; i <recipes.length -1; i++){
         let ingredients = recipes[i].ingredients;
-        for(var j = 0 ; j < ingredientArrayFilter.length -1; j++){
-            let ingredientFilterList = ingredientArrayFilter[j].ingredient
-            if(ingredientFilterList == ingredients){
-                recipesFilter.push(i);
+        for(var j = 0 ; j < ingredients.length -1; j++){
+            let ingredientFilterList = ingredients[j].ingredient
+            if(ingredientFilterList == indexIngredientsArray){
+                recipesFilter.push(ingredient);
                 console.log(recipesFilter);
             }
         }
