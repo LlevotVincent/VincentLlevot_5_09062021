@@ -21,8 +21,8 @@ function createIngredientArray (ingredientList){
             }
         }
     }
-    console.log("liste des ingredients")
-    console.log(ingredientArray); // vérifie le tableau Ingredient
+    // console.log("liste des ingredients")
+    // console.log(ingredientArray);
 }
 
 //trie le tableau ingredients suivant l'input de la barre de recherche
@@ -34,28 +34,24 @@ searchBar.addEventListener("change", function(){
 
 if(inputSearchBarSplit.indexOf(" ") == -1){
     for (var i = 0 ; i < ingredientArray.length -1; i++){
-
         if(ingredientArray[i].includes(inputSearchBar)){
             ingredientArrayFilter.push(ingredientArray[i]);
             }
         }
     }
+    console.log("listes des ingrédients filtrés");
     console.log(ingredientArrayFilter);
     RecipesFilter();
+    CreateCard(recipesFilter);
+    ShowRecipes();
 })
 
-// RecipesFilter()
-
-
-
 // //créer un tableau de recette filtrer
-
+let recipesFilter = [];
 function RecipesFilter() {
-    let recipesFilter = [];
-    // let indexIngredientsArray = ingredientArrayFilter[i];
+
     for(var i = 0 ; i <ingredientArrayFilter.length -1; i++){
         let ingredientFilter = ingredientArrayFilter[i];
-
     for(var k = 0 ; k <recipes.length -1; k++){
         let ingredients = recipes[k].ingredients;
         for(var j = 0 ; j < ingredients.length -1; j++){
@@ -68,25 +64,44 @@ function RecipesFilter() {
         }
     }
 }
+console.log("liste des recettes associés");
 console.log(recipesFilter);
+}
+    // creation de carte pour les recettes filtrés
+
+function CreateCard(){
+    for(var i = 0; i < recipesFilter.length -1; i++){
+        const mainGrid = document.getElementById("main_grid");
+        var recipeCard = document.createElement("div");
+        recipeCard.classList.add("cooking_recipe");
+        mainGrid.appendChild(recipeCard);
+
+        var imgFood = document.createElement("div");
+        imgFood.classList.add("img_food","a");
+        recipeCard.appendChild(imgFood);
+
+        var titleRecipes = document.createElement("h2");
+        titleRecipes.classList.add("recipe_title","d");
+        recipeCard.appendChild(titleRecipes);
+
+        var ingredient =  document.createElement("div")
+        ingredient.classList.add("ingredients","b");
+        recipeCard.appendChild(ingredient);
+
+        var step =  document.createElement("div")
+        step.classList.add("step","c");
+        recipeCard.appendChild(step);
+        
+    }
 }
 
 
-
-// function RecipesFilter() {
-//     let ingredientsrecipe = document.getElementsByClassName("ingredients");
-//     let recipe = ingredientArrayFilter[i];
-//         for(var i = 0; i < ingredientArrayFilter.length; i++) {
-//             Console.log(ingredientArrayFilter);
-//             ingredientsrecipe.innerHTML = recipe;
-//         }
-// }
-
-
-
-
-
-
+function ShowRecipes() {
+    for(var i = 0; i < recipesFilter.length -1; i++){
+   let titleRecipes = document.getElementsByClassName("recipe_title");
+   titleRecipes.innerHTML = "salut";
+}
+}
 
 
 
