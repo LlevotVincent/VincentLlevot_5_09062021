@@ -6,9 +6,8 @@ originalText = originalText.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
 console.log(result)
 }
 
-//creer un tableau des ingrédients
-var ingredientArray = [];
-
+//**************** creer un tableau des ingrédients ****************
+let ingredientArray = [];
 createIngredientArray(ingredientArray);
 
 function createIngredientArray (ingredientList){
@@ -26,15 +25,15 @@ function createIngredientArray (ingredientList){
     // console.log(ingredientArray);
 }
 
-//trie le tableau ingredients suivant l'input de la barre de recherche
+//**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
 let searchBar = document.getElementById("searchbar__text");
 var ingredientArrayFilter = [];
 searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
     let inputSearchBarSplit = inputSearchBar.split(" ");
-
+    ingredientArrayFilter = [];
 if(inputSearchBarSplit.indexOf(" ") == -1){
-    for (var i = 0 ; i < ingredientArray.length -1; i++){
+    for (var i = 0 ; i < ingredientArray.length; i++){
         if(ingredientArray[i].includes(inputSearchBar)){
             ingredientArrayFilter.push(ingredientArray[i]);
             }
@@ -42,19 +41,19 @@ if(inputSearchBarSplit.indexOf(" ") == -1){
     }
     console.log("liste des ingrédients filtrés");
     console.log(ingredientArrayFilter);
-    RecipesFilter();
+    RecipesFilter(ingredientArrayFilter);
     CreateCard();
 })
 
-// //créer un tableau de recette filtrer
+//**************** créer un tableau de recette filtrer ****************
 var recipesFilter = [];
 function RecipesFilter() {
-
-    for(var i = 0 ; i <ingredientArrayFilter.length -1; i++){
+recipesFilter = [];
+    for(var i = 0 ; i <ingredientArrayFilter.length; i++){
         let ingredientFilter = ingredientArrayFilter[i];
-    for(var k = 0 ; k <recipes.length -1; k++){
+    for(var k = 0 ; k <recipes.length; k++){
         let ingredients = recipes[k].ingredients;
-        for(var j = 0 ; j < ingredients.length -1; j++){
+        for(var j = 0 ; j < ingredients.length; j++){
             let ingredient = ingredients[j].ingredient.toLowerCase();;
             if( ingredient == ingredientFilter){
                 let recipeName = recipes[k].name.toLowerCase();
@@ -66,11 +65,16 @@ function RecipesFilter() {
 console.log("liste des recettes associés");
 console.log(recipesFilter);
 }
-    // creation de carte pour les recettes filtrés
+//**************** creation de carte pour les recettes filtrés ****************
 
 function CreateCard(){
-    for(var i = 0; i < recipesFilter.length -1; i++){
-        const mainGrid = document.getElementById("main_grid");
+    const mainGrid = document.getElementById("main_grid");
+//--- reinitialise l affichage ---
+    while (mainGrid.firstChild) {
+        mainGrid.removeChild(mainGrid.firstChild);}
+
+    for(var i = 0; i < recipesFilter.length ; i++){
+
         var recipeCard = document.createElement("div");
         recipeCard.classList.add("cooking_recipe");
         mainGrid.appendChild(recipeCard);
