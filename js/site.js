@@ -8,6 +8,7 @@ console.log(result)
 
 //creer un tableau des ingrédients
 var ingredientArray = [];
+
 createIngredientArray(ingredientArray);
 
 function createIngredientArray (ingredientList){
@@ -27,7 +28,7 @@ function createIngredientArray (ingredientList){
 
 //trie le tableau ingredients suivant l'input de la barre de recherche
 let searchBar = document.getElementById("searchbar__text");
-let ingredientArrayFilter = [];
+var ingredientArrayFilter = [];
 searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
     let inputSearchBarSplit = inputSearchBar.split(" ");
@@ -39,15 +40,14 @@ if(inputSearchBarSplit.indexOf(" ") == -1){
             }
         }
     }
-    console.log("listes des ingrédients filtrés");
+    console.log("liste des ingrédients filtrés");
     console.log(ingredientArrayFilter);
     RecipesFilter();
-    CreateCard(recipesFilter);
-    ShowRecipes();
+    CreateCard();
 })
 
 // //créer un tableau de recette filtrer
-let recipesFilter = [];
+var recipesFilter = [];
 function RecipesFilter() {
 
     for(var i = 0 ; i <ingredientArrayFilter.length -1; i++){
@@ -57,9 +57,8 @@ function RecipesFilter() {
         for(var j = 0 ; j < ingredients.length -1; j++){
             let ingredient = ingredients[j].ingredient.toLowerCase();;
             if( ingredient == ingredientFilter){
-                let recipeName = recipes[k].name;
+                let recipeName = recipes[k].name.toLowerCase();
                 recipesFilter.push(recipeName);
-
             }
         }
     }
@@ -80,28 +79,21 @@ function CreateCard(){
         imgFood.classList.add("img_food","a");
         recipeCard.appendChild(imgFood);
 
-        var titleRecipes = document.createElement("h2");
-        titleRecipes.classList.add("recipe_title","d");
-        recipeCard.appendChild(titleRecipes);
+        var titleRecipes = document.createElement("h2")
+        titleRecipes.classList.add("recipe_title","d")
+        recipeCard.appendChild(titleRecipes)
+        titleRecipes.innerText = recipesFilter[i];
 
         var ingredient =  document.createElement("div")
-        ingredient.classList.add("ingredients","b");
+        ingredient.classList.add("ingredients","b")
         recipeCard.appendChild(ingredient);
 
         var step =  document.createElement("div")
-        step.classList.add("step","c");
+        step.classList.add("step","c")
         recipeCard.appendChild(step);
-        
     }
 }
 
-
-function ShowRecipes() {
-    for(var i = 0; i < recipesFilter.length -1; i++){
-   let titleRecipes = document.getElementsByClassName("recipe_title");
-   titleRecipes.innerHTML = "salut";
-}
-}
 
 
 
