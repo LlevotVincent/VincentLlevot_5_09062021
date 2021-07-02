@@ -32,13 +32,34 @@ searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
     let inputSearchBarSplit = inputSearchBar.split(" ");
     ingredientArrayFilter = [];
+
+
 if(inputSearchBarSplit.indexOf(" ") == -1){
     for (var i = 0 ; i < ingredientArray.length; i++){
-        if(ingredientArray[i].includes(inputSearchBar)){
+        for (var j = 0 ; j < inputSearchBarSplit.length; j++){
+            if (ingredientArray[i] === inputSearchBar){
+                ingredientArrayFilter.push(ingredientArray[i]);
+
+    } else {
+        if(ingredientArray[i] === (inputSearchBarSplit[j])){
             ingredientArrayFilter.push(ingredientArray[i]);
-            }
-        }
-    }
+        }}}}}
+
+
+
+
+    // for (var i = 0 ; i < ingredientArray.length; i++){
+    //         for (var j = 0 ; j < inputSearchBarSplit.length; j++){
+    //             if(ingredientArray[i].includes(inputSearchBarSplit)){
+    //              ingredientArrayFilter.push(ingredientArray[i]);
+    // } else {
+    //         (ingredientArray[i].includes(inputSearchBar))
+    //         ingredientArrayFilter.push(ingredientArray[i]);
+    //         }
+
+
+
+
     console.log("liste des ingrédients filtrés");
     console.log(ingredientArrayFilter);
     RecipesFilter(ingredientArrayFilter);
