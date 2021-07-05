@@ -15,15 +15,14 @@ function createIngredientArray (ingredientList){
     for (var i = 0; i < recipes.length; i++) {
         let ingredients = recipes[i].ingredients;
         for (var j = 0; j < ingredients.length; j++){
-            let ingredient = ingredients[j].ingredient.toLowerCase();
-            if (!ingredientList.includes(ingredient)){
-                ingredientList.push(ingredient);
+            let listOfIngredient = ingredients[j].ingredient.toLowerCase();
+            if (!ingredientList.includes(listOfIngredient)){
+                ingredientList.push(listOfIngredient);
             }
         }
     }
-    // console.log("liste des ingredients")
-    // console.log(ingredientArray);
-   
+    console.log("liste des ingredients")
+    console.log(ingredientArray);
 }
 
 //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
@@ -31,10 +30,9 @@ let searchBar = document.getElementById("searchbar__text");
 var ingredientArrayFilter = [];
 searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
-    noAccent(inputSearchBar)
+    // noAccent(inputSearchBar)
     let inputSearchBarSplit = inputSearchBar.split(" ");
     ingredientArrayFilter = [];
-
 
         for (var i = 0 ; i < ingredientArray.length; i++){
             if(ingredientArray[i] == inputSearchBar) {
