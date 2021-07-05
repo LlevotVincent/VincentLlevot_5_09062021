@@ -1,9 +1,9 @@
 
 
 // Fonction qui enleve les accents 
-function noAccent(originalText){
-originalText = originalText.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-console.log(result)
+function noAccent(str){
+str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+//console.log(str)
 }
 
 //**************** creer un tableau des ingrédients ****************
@@ -23,6 +23,7 @@ function createIngredientArray (ingredientList){
     }
     // console.log("liste des ingredients")
     // console.log(ingredientArray);
+   
 }
 
 //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
@@ -30,43 +31,29 @@ let searchBar = document.getElementById("searchbar__text");
 var ingredientArrayFilter = [];
 searchBar.addEventListener("change", function(){
     let inputSearchBar = searchBar.value.toLowerCase();
+    noAccent(inputSearchBar)
     let inputSearchBarSplit = inputSearchBar.split(" ");
     ingredientArrayFilter = [];
 
 
-if(inputSearchBarSplit.indexOf(" ") == -1){
-    for (var i = 0 ; i < ingredientArray.length; i++){
-        for (var j = 0 ; j < inputSearchBarSplit.length; j++){
-            if (ingredientArray[i] === inputSearchBar){
-                ingredientArrayFilter.push(ingredientArray[i]);
-
-    } else {
-        if(ingredientArray[i] === (inputSearchBarSplit[j])){
+        for (var i = 0 ; i < ingredientArray.length; i++){
+            if(ingredientArray[i] == inputSearchBar) {
             ingredientArrayFilter.push(ingredientArray[i]);
-        }}}}}
-
-
-
-
-    // for (var i = 0 ; i < ingredientArray.length; i++){
-    //         for (var j = 0 ; j < inputSearchBarSplit.length; j++){
-    //             if(ingredientArray[i].includes(inputSearchBarSplit)){
-    //              ingredientArrayFilter.push(ingredientArray[i]);
-    // } else {
-    //         (ingredientArray[i].includes(inputSearchBar))
-    //         ingredientArrayFilter.push(ingredientArray[i]);
-    //         }
-
-
-
-
+            } else {
+                if (inputSearchBar.indexOf(" ") !== -1) {
+                        if(ingredientArray[i].includes(inputSearchBar)){
+                        ingredientArrayFilter.push(ingredientArray[i]);
+                    }
+                }
+            }
+        }
     console.log("liste des ingrédients filtrés");
     console.log(ingredientArrayFilter);
     RecipesFilter(ingredientArrayFilter);
-    CreateCard();
+    CreateCard(recipesFilter);
 })
 
-//**************** créer un tableau de recette filtrer ****************
+//**************** créer un tableau de recette filtrées ****************
 var recipesFilter = [];
 function RecipesFilter() {
 recipesFilter = [];
