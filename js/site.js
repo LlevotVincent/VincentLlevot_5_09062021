@@ -66,13 +66,13 @@ function noAccent(str){
             } else {
                 if(ingredientArray[i] === inputSearchBar){
                     ingredientArrayFilter.push(ingredientArray[i]);
-                }
+                } else {
                 let indexIngredient = [];
                     if(ingredientArray[i].includes(inputSearchBarSplit)){
                         indexIngredient.push(ingredientArray[i]);
                         console.log(indexIngredient);
-
-                    
+                        ingredientArrayFilter.push(indexIngredient[i])
+                    }
 
                 }
             }
