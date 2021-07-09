@@ -32,12 +32,12 @@ function createElementArray (){
             }
         }
     }
-    console.log("liste des ingredients")
-    console.log(ingredientArray);
-    console.log("liste des appareils")
-    console.log(applianceArray);
-    console.log("liste des ustensiles")
-    console.log(ustensilsArray);
+    // console.log("liste des ingredients")
+    // console.log(ingredientArray);
+    // console.log("liste des appareils")
+    // console.log(applianceArray);
+    // console.log("liste des ustensiles")
+    // console.log(ustensilsArray);
 }
     
     //**************** lance la recherche par la barre de recherche ****************
