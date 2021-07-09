@@ -137,27 +137,31 @@ function ElementArrayFilter(){
     for(var k = 0 ; k <recipes.length; k++){
     let recipeName = recipes[k].name.toLowerCase();
     let ingredients = recipes[k].ingredients;
-        for(var j = 0 ; j < ingredients.length; j++){
-        let ingredient = ingredients[j].ingredient.toLowerCase();
-            for(var i = 0 ; i < elementArrayFilter.length; i++){
+        for(var i = 0 ; i < elementArrayFilter.length; i++){
+            for(var j = 0 ; j < ingredients.length; j++){
+            let ingredient = ingredients[j].ingredient.toLowerCase();
                 if(ingredient .includes (elementArrayFilter[i])){
                     if (!recipesFilter.includes(recipeName)){
                     recipesFilter.push(recipeName);
+                    }
                 }
             }
-        }
-    // let appliances = recipes[k].appliance.toLowerCase();
-    //             if( appliances === applianceArrayFilter[i]){
-    //                 recipesFilter.push(recipeName);
-    //             }
-    // let ustensils = recipes[k].ustensils;
-    //         for(var j = 0 ; j < ustensils.length; j++){
-    //             if( ustensils == ustensilArrayFilter[i]){
-    //                 recipesFilter.push(recipeName);
-    //             }
-    //         }
-            CreateCard(recipesFilter);     
-        }
+            let appliances = recipes[k].appliance.toLowerCase();
+              if( appliances .includes ( elementArrayFilter[i])){
+                    if (!recipesFilter.includes(recipeName)){
+                    recipesFilter.push(recipeName);
+                    }
+                }
+            let ustensils = recipes[k].ustensils;
+            for(var j = 0 ; j < ustensils.length; j++){
+                if( ustensils .includes(elementArrayFilter[i])){
+                    if (!recipesFilter.includes(recipeName)){
+                    recipesFilter.push(recipeName);
+                    }
+                }
+            }   
+        }  
+        CreateCard(recipesFilter);        
     }    
     console.log("liste des recettes associés");
     console.log(recipesFilter);
