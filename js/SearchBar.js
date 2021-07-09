@@ -1,13 +1,10 @@
-// Fonction qui enleve les accents 
-function noAccent(str){
-    str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
-    // console.log(str)
-    }
-    
+
+const searchBar = document.getElementById("searchbar__text");
+
     //**************** creer un tableau des ingrédients, appareils et ustensiles****************
     let ingredientArray = [];
     let applianceArray = [];
-    let ustensilsArray = [];
+    let ustensilArray = [];
     createElementArray();
     
 function createElementArray (){
@@ -26,37 +23,37 @@ function createElementArray (){
                 applianceArray.push(listOfAppliance);
                 }
                 let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!ustensilsArray.includes(listOfUstensils)){
-                ustensilsArray.push(listOfUstensils);
+                if (!ustensilArray.includes(listOfUstensils)){
+                ustensilArray.push(listOfUstensils);
                 }
             }
         }
     }
     // console.log("liste des ingredients")
     // console.log(ingredientArray);
-    // console.log("liste des appareils")
-    // console.log(applianceArray);
-    // console.log("liste des ustensiles")
-    // console.log(ustensilsArray);
+    console.log("liste des appareils")
+    console.log(applianceArray);
+    console.log("liste des ustensiles")
+    console.log(ustensilArray);
 }
     
     //**************** lance la recherche par la barre de recherche ****************
-    let searchBar = document.getElementById("searchbar__text");
+
     let ingredientArrayFilter = [];
     let applianceArrayFilter = [];
-    let ustensilsArrayFilter = [];
-    searchBar.addEventListener("change", Filter);
+    let ustensilArrayFilter = [];
+    searchBar.addEventListener("change", ElementArrayFilter);
     
-function Filter(){
-    const inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+// function Filter(){
+//     const inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    ElementArrayFilter(inputSearchBar);
-    }
+//     ElementArrayFilter(inputSearchBar);
+//     }
 
 
     //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
 function ElementArrayFilter(){
-    let inputSearchBar = searchBar.value.toLowerCase();
+    let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         // noAccent(inputSearchBar)
     let inputSearchBarSplit = inputSearchBar.split(" ");
     elementArrayFilter = []
@@ -82,12 +79,12 @@ function ElementArrayFilter(){
             } 
         }
 
-        for (var i = 0 ; i < ustensilsArray.length; i++){
-            if(ustensilsArray[i].includes(inputSearchBarSplit)){
-                elementArrayFilter.push(ustensilsArray[i]);
+        for (var i = 0 ; i < ustensilArray.length; i++){
+            if(ustensilArray[i].includes(inputSearchBarSplit)){
+                elementArrayFilter.push(ustensilArray[i]);
             }else if (inputSearchBar.indexOf(" ") !== -1) {
-                if(ustensilsArray[i] .includes (inputSearchBar)){
-                    elementArrayFilter.push(ustensilsArray[i]);
+                if(ustensilArray[i] .includes (inputSearchBar)){
+                    elementArrayFilter.push(ustensilArray[i]);
                 }
             }
         }
@@ -168,10 +165,6 @@ function ElementArrayFilter(){
             recipeCard.appendChild(step);
         }
     }
-    
-    
-    
-    
     
     
     
