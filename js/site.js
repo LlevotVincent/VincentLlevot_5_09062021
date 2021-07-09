@@ -45,107 +45,110 @@ function createElementArray (){
     let ingredientArrayFilter = [];
     let applianceArrayFilter = [];
     let ustensilsArrayFilter = [];
-    searchBar.addEventListener("change", filter);
+    searchBar.addEventListener("change", Filter);
     
-function filter(){
+function Filter(){
     const inputSearchBar = searchBar.value.toLowerCase();
-    elementArrayFilter(inputSearchBar);
+    ElementArrayfilter(inputSearchBar);
     // applianceFilter(inputSearchBar);
     // ustensilFilter(inputSearchBar);
     }
 
     //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
-function elementArrayFilter(){
+function ElementArrayfilter(){
     let inputSearchBar = searchBar.value.toLowerCase();
         // noAccent(inputSearchBar)
     let inputSearchBarSplit = inputSearchBar.split(" ");
-    ElementArrayFilter = [];
+    elementArrayFilter = []
+    ingredientArrayFilter = [];
+    applianceArrayFilter = [];
+    ustensilArrayFilter = [];
         for (var i = 0 ; i < ingredientArray.length; i++){
             if(ingredientArray[i].includes(inputSearchBarSplit)){
-                ElementArrayFilter.push(ingredientArray[i]);
+                elementArrayFilter.push(ingredientArray[i]);
             }else if (inputSearchBar.indexOf(" ") !== -1) {
-                if(ingredientArray[i] .includes (inputSearchBar)){
-                    ElementArrayFilter.push(ingredientArray[i]);
+                if(ingredientArray[i].includes (inputSearchBar)){
+                    elementArrayFilter.push(ingredientArray[i]);
                 }
-            }   
-        }
+            }                    
+        }           
         for (var i = 0 ; i < applianceArray.length; i++){
             if(applianceArray[i].includes(inputSearchBarSplit)){
-                ElementArrayFilter.push(applianceArray[i]);
+                elementArrayFilter.push(applianceArray[i]);
             }else if (inputSearchBar.indexOf(" ") !== -1) {
                 if(applianceArray[i] .includes (inputSearchBar)){
-                    ElementArrayFilter.push(applianceArray[i]);
+                    elementArrayFilter.push(applianceArray[i]);
                 }
             }
         }
         for (var i = 0 ; i < ustensilsArray.length; i++){
             if(ustensilsArray[i].includes(inputSearchBarSplit)){
-                ElementArrayFilter.push(ustensilsArray[i]);
+                elementArrayFilter.push(ustensilsArray[i]);
             }else if (inputSearchBar.indexOf(" ") !== -1) {
                 if(ustensilsArray[i] .includes (inputSearchBar)){
-                    ElementArrayFilter.push(ustensilsArray[i]);
+                    elementArrayFilter.push(ustensilsArray[i]);
                 }
             }
         }
     console.log("liste des éléments filtrés");
-    console.log(ElementArrayFilter);
-    RecipesFilter(ElementArrayFilter);
+    console.log(elementArrayFilter);
+    RecipesFilter(elementArrayFilter);
 }
 
     //**************** trie le tableau appareil suivant l'input de la barre de recherche ****************
-function applianceFilter(){
-    let inputSearchBar = searchBar.value.toLowerCase();
-        // noAccent(inputSearchBar)
-    let inputSearchBarSplit = inputSearchBar.split(" ");
-        applianceArrayFilter = [];
-        for (var i = 0 ; i < applianceArray.length; i++){
-            if(applianceArray[i].includes(inputSearchBarSplit)){
-                applianceArrayFilter.push(applianceArray[i]);
-            }
-        }  
-    console.log("liste des appareils filtrés");
-    console.log(applianceArrayFilter);
-    RecipesFilterAppliance(applianceArrayFilter);
-}
+// function applianceFilter(){
+//     let inputSearchBar = searchBar.value.toLowerCase();
+//         // noAccent(inputSearchBar)
+//     let inputSearchBarSplit = inputSearchBar.split(" ");
+//         applianceArrayFilter = [];
+//         for (var i = 0 ; i < applianceArray.length; i++){
+//             if(applianceArray[i].includes(inputSearchBarSplit)){
+//                 applianceArrayFilter.push(applianceArray[i]);
+//             }
+//         }  
+//     console.log("liste des appareils filtrés");
+//     console.log(applianceArrayFilter);
+//     RecipesFilterAppliance(applianceArrayFilter);
+// }
     
-    //**************** trie le tableau ustensil suivant l'input de la barre de recherche ****************
-function ustensilFilter(){
-    let inputSearchBar = searchBar.value.toLowerCase();
-        // noAccent(inputSearchBar)
-    let inputSearchBarSplit = inputSearchBar.split(" ");
-        ustensilsArrayFilter = [];
-        for (var i = 0 ; i < ustensilsArray.length; i++){
-            if(ustensilsArray[i].includes(inputSearchBarSplit)){
-                ustensilsArrayFilter.push(ustensilsArray[i]);
-            }
-        }
-    console.log("liste des ustensiles filtrés");
-    console.log(ustensilsArrayFilter);
-    RecipesFilterUstensils(ustensilsArrayFilter);
-}
+//     //**************** trie le tableau ustensil suivant l'input de la barre de recherche ****************
+// function ustensilFilter(){
+//     let inputSearchBar = searchBar.value.toLowerCase();
+//         // noAccent(inputSearchBar)
+//     let inputSearchBarSplit = inputSearchBar.split(" ");
+//         ustensilsArrayFilter = [];
+//         for (var i = 0 ; i < ustensilsArray.length; i++){
+//             if(ustensilsArray[i].includes(inputSearchBarSplit)){
+//                 ustensilsArrayFilter.push(ustensilsArray[i]);
+//             }
+//         }
+//     console.log("liste des ustensiles filtrés");
+//     console.log(ustensilsArrayFilter);
+//     RecipesFilterUstensils(ustensilsArrayFilter);
+// }
 
     //**************** créer un tableau de recette filtrées par ingrédient ****************
     var recipesFilter = [];
     function RecipesFilter() {
     recipesFilter = [];
-        for(var i = 0 ; i < ElementArrayFilter.length; i++){
+        for(var i = 0 ; i < elementArrayFilter.length; i++){
         for(var k = 0 ; k <recipes.length; k++){
             let ingredients = recipes[k].ingredients;
             for(var j = 0 ; j < ingredients.length; j++){
                 let ingredient = ingredients[j].ingredient.toLowerCase();
-                if( ingredient === ElementArrayFilter[i]){
+                if( ingredient === elementArrayFilter[i]){
                     let recipeName = recipes[k].name.toLowerCase();
                     recipesFilter.push(recipeName);
                 }
             }
             let appliances = recipes[k].appliance.toLowerCase();
-                if( appliances === ElementArrayFilter[i]){
+                if( appliances === elementArrayFilter[i]){
                     let recipeName = recipes[k].name.toLowerCase();
                     recipesFilter.push(recipeName);
                 }
             let ustensils = recipes[k].ustensils;
             for(var j = 0 ; j < ustensils.length; j++){
-                if( ustensils == ElementArrayFilter[i]){
+                if( ustensils == elementArrayFilter[i]){
                     let recipeName = recipes[k].name.toLowerCase();
                     recipesFilter.push(recipeName);
                 }
