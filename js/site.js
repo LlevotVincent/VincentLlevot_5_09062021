@@ -17,27 +17,27 @@ function createElementArray (){
         for (var j = 0; j < ingredients.length; j++){
             let ustensils = recipes[i].ustensils;
             for (var k = 0; k < ustensils.length; k++){
-                let listOfIngredient = ingredients[j].ingredient.toLowerCase();
+                let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!ingredientArray.includes(listOfIngredient)){
                 ingredientArray.push(listOfIngredient);
                 }
-                let listOfAppliance = recipes[i].appliance.toLowerCase();
+                let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!applianceArray.includes(listOfAppliance)){
                 applianceArray.push(listOfAppliance);
                 }
-                let listOfUstensils = ustensils[k];
+                let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!ustensilsArray.includes(listOfUstensils)){
                 ustensilsArray.push(listOfUstensils);
                 }
             }
         }
     }
-    // console.log("liste des ingredients")
-    // console.log(ingredientArray);
-    // console.log("liste des appareils")
-    // console.log(applianceArray);
-    // console.log("liste des ustensiles")
-    // console.log(ustensilsArray);
+    console.log("liste des ingredients")
+    console.log(ingredientArray);
+    console.log("liste des appareils")
+    console.log(applianceArray);
+    console.log("liste des ustensiles")
+    console.log(ustensilsArray);
 }
     
     //**************** lance la recherche par la barre de recherche ****************
@@ -48,9 +48,11 @@ function createElementArray (){
     searchBar.addEventListener("change", Filter);
     
 function Filter(){
-    const inputSearchBar = searchBar.value.toLowerCase();
+    const inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
     ElementArrayFilter(inputSearchBar);
     }
+
 
     //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
 function ElementArrayFilter(){
@@ -101,18 +103,18 @@ function ElementArrayFilter(){
     recipesFilter = [];
 
     for(var k = 0 ; k <recipes.length; k++){
-    let recipeName = recipes[k].name.toLowerCase();
+    let recipeName = recipes[k].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let ingredients = recipes[k].ingredients;
         for(var i = 0 ; i < elementArrayFilter.length; i++){
             for(var j = 0 ; j < ingredients.length; j++){
-            let ingredient = ingredients[j].ingredient.toLowerCase();
+            let ingredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if(ingredient .includes (elementArrayFilter[i])){
                     if (!recipesFilter.includes(recipeName)){
                     recipesFilter.push(recipeName);
                     }
                 }
             }
-            let appliances = recipes[k].appliance.toLowerCase();
+            let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
               if( appliances .includes ( elementArrayFilter[i])){
                     if (!recipesFilter.includes(recipeName)){
                     recipesFilter.push(recipeName);
@@ -120,7 +122,8 @@ function ElementArrayFilter(){
                 }
             let ustensils = recipes[k].ustensils;
             for(var j = 0 ; j < ustensils.length; j++){
-                if( ustensils .includes(elementArrayFilter[i])){
+                let ustensil = ustensils[j].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if( ustensil .includes(elementArrayFilter[i])){
                     if (!recipesFilter.includes(recipeName)){
                     recipesFilter.push(recipeName);
                     }
