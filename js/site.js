@@ -50,8 +50,6 @@ function createElementArray (){
 function Filter(){
     const inputSearchBar = searchBar.value.toLowerCase();
     ElementArrayFilter(inputSearchBar);
-    // applianceFilter(inputSearchBar);
-    // ustensilFilter(inputSearchBar);
     }
 
     //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
@@ -97,38 +95,6 @@ function ElementArrayFilter(){
     RecipesFilter(elementArrayFilter);     
 }
 
-    //**************** trie le tableau appareil suivant l'input de la barre de recherche ****************
-// function applianceFilter(){
-//     let inputSearchBar = searchBar.value.toLowerCase();
-//         // noAccent(inputSearchBar)
-//     let inputSearchBarSplit = inputSearchBar.split(" ");
-//         applianceArrayFilter = [];
-//         for (var i = 0 ; i < applianceArray.length; i++){
-//             if(applianceArray[i].includes(inputSearchBarSplit)){
-//                 applianceArrayFilter.push(applianceArray[i]);
-//             }
-//         }  
-//     console.log("liste des appareils filtrés");
-//     console.log(applianceArrayFilter);
-//     RecipesFilterAppliance(applianceArrayFilter);
-// }
-    
-//     //**************** trie le tableau ustensil suivant l'input de la barre de recherche ****************
-// function ustensilFilter(){
-//     let inputSearchBar = searchBar.value.toLowerCase();
-//         // noAccent(inputSearchBar)
-//     let inputSearchBarSplit = inputSearchBar.split(" ");
-//         ustensilsArrayFilter = [];
-//         for (var i = 0 ; i < ustensilsArray.length; i++){
-//             if(ustensilsArray[i].includes(inputSearchBarSplit)){
-//                 ustensilsArrayFilter.push(ustensilsArray[i]);
-//             }
-//         }
-//     console.log("liste des ustensiles filtrés");
-//     console.log(ustensilsArrayFilter);
-//     RecipesFilterUstensils(ustensilsArrayFilter);
-// }
-
     //**************** créer un tableau de recette filtrées par ingrédient ****************
     var recipesFilter = [];
     function RecipesFilter() {
@@ -166,46 +132,6 @@ function ElementArrayFilter(){
     console.log("liste des recettes associés");
     console.log(recipesFilter);
     }
-
-    //**************** créer un tableau de recette filtrées par Appareils ****************
-    
-    // var recipesFilter = [];
-    // function RecipesFilterAppliance() {
-    // recipesFilter = [];
-    //     for(var i = 0 ; i < applianceArrayFilter.length; i++){
-    //     for(var k = 0 ; k <recipes.length; k++){
-    //         let appliances = recipes[k].appliance.toLowerCase();
-    //             if( appliances === applianceArrayFilter[i]){
-    //                 let recipeName = recipes[k].name.toLowerCase();
-    //                 recipesFilter.push(recipeName);
-    //                 CreateCard(recipesFilter);
-    //             }
-    //         }
-    //     }
-    // console.log("liste des recettes associés");
-    // console.log(recipesFilter);
-    // }
-    
-    // // //**************** créer un tableau de recette filtrées par ustensiles ****************
-    
-    // var recipesFilter = [];
-    // function RecipesFilterUstensils() {
-    // recipesFilter = [];
-    // for(var i = 0 ; i < ustensilsArrayFilter.length; i++){
-    //     for(var k = 0 ; k <recipes.length; k++){
-    //         let ustensils = recipes[k].ustensils;
-    //         for(var j = 0 ; j < ustensils.length; j++){
-    //             if( ustensils == ustensilsArrayFilter[i]){
-    //                 let recipeName = recipes[k].name.toLowerCase();
-    //                 recipesFilter.push(recipeName);
-    //                 CreateCard(recipesFilter);
-    //             }
-    //         }
-    //     }
-    // }
-    // console.log("liste des recettes associés");
-    // console.log(recipesFilter);
-    // }
     
     //**************** creation de carte pour les recettes filtrés ****************
     
