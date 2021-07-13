@@ -17,24 +17,28 @@ function createElementArray (){
                 let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!ingredientArray.includes(listOfIngredient)){
                 ingredientArray.push(listOfIngredient);
+                ingredientArray.sort();
+
                 }
                 let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!applianceArray.includes(listOfAppliance)){
                 applianceArray.push(listOfAppliance);
+                applianceArray.sort();
                 }
                 let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!ustensilArray.includes(listOfUstensils)){
                 ustensilArray.push(listOfUstensils);
+                ustensilArray.sort();
                 }
             }
         }
     }
     // console.log("liste des ingredients")
     // console.log(ingredientArray);
-    console.log("liste des appareils")
-    console.log(applianceArray);
-    console.log("liste des ustensiles")
-    console.log(ustensilArray);
+    // console.log("liste des appareils")
+    // console.log(applianceArray);
+    // console.log("liste des ustensiles")
+    // console.log(ustensilArray);
 }
     
     //**************** lance la recherche par la barre de recherche ****************

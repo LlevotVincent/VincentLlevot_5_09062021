@@ -4,6 +4,8 @@
  const IngredientChevronDown =  document.getElementById("chevronIngredient-down");
  const IngredientChevronUp =  document.getElementById("chevronIngredient-up");
  const DivIngredient = document.getElementById("IngredientsArray");
+ const ResultFilter = document.getElementById("resultfilterbox");
+ 
 
  const FilterAppliances = document.getElementById("filterAppliances");
  const ApplianceChevronDown =  document.getElementById("chevronAppliance-down");
@@ -19,11 +21,12 @@
 //  const FilterUstensil = document.querySelector("li.filter3");
 
 
- //----- montre les Div de IngredientArray -----
+ //*************************  montre la Div de IngredientArray ************************* 
 
  IngredientChevronDown.addEventListener("click", DisplayIngredientArray)
- function DisplayIngredientArray (){
 
+ function DisplayIngredientArray (){
+    //montre la Div de ingredient Array
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
     IngredientChevronUp.classList.remove("hidden");
@@ -33,11 +36,35 @@
         DivIngredient.appendChild(IndexIngredient);
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
-    }
+
+        //cree le tag ingredient
+        let IngredientResultFilter = document.createElement("div");
+        let ResultFilterText =  document.createElement("p");
+        let ResultFilterIcon = document.createElement("i")
+            IndexIngredient.addEventListener("click", function(){
+                ResultFilter.appendChild(IngredientResultFilter);
+                IngredientResultFilter.appendChild(ResultFilterText);
+                IngredientResultFilter.appendChild(ResultFilterIcon);
+                IndexIngredient.classList.add("TextFilter_active");
+                IngredientResultFilter.classList.add("Filter","filter1");
+                ResultFilterText.classList.add("result__text")
+                ResultFilterIcon.classList.add("far", "fa-times-circle");
+                ResultFilterText.innerText = IndexIngredient.textContent; 
+            })
+        // ResultFilterIcon.addEventListener("click", resetFilter())  
+    }   
     FilterIngredients.classList.add("activefilter")
 }
 
- //----- cache les Div de IngredientArray -----
+    //Reset le filtre ingredient
+
+    function resetFilter() {
+        ResultFilter.remove()
+    }
+
+
+
+ //************************* cache les Div de IngredientArray ************************* 
 
 IngredientChevronUp.addEventListener("click", RemoveIngredientArray)
 function RemoveIngredientArray (){
