@@ -5,9 +5,9 @@
  const IngredientChevronUp =  document.getElementById("chevronIngredient-up");
  const DivIngredient = document.getElementById("IngredientsArray");
  const ResultFilter = document.getElementById("resultfilterbox");
- const InputFilter = document.getElementById("ingredients__filter")
+ const InputIngredientsFilter = document.getElementById("ingredients__filter")
  let ingredientArrayResult = [];
- 
+
 
  const FilterAppliances = document.getElementById("filterAppliances");
  const ApplianceChevronDown =  document.getElementById("chevronAppliance-down");
@@ -29,6 +29,7 @@
 
  function DisplayIngredientArray (){
     elementArrayFilter = [];
+
     //montre la Div de ingredient Array
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
@@ -45,6 +46,7 @@
         let IngredientResultFilter = document.createElement("div");
         let ResultFilterText =  document.createElement("p");
         let ResultFilterIcon = document.createElement("i")
+        
             IndexIngredient.addEventListener("click", function(){
                 ResultFilter.appendChild(IngredientResultFilter);
                 IngredientResultFilter.appendChild(ResultFilterText);
@@ -55,18 +57,14 @@
                 ResultFilterIcon.classList.add("far", "fa-times-circle");
                 ResultFilterText.innerText = IndexIngredient.textContent;
 
-        // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
-        // for(var i = 0 ; i <recipes.length; i++){ 
-        //     let recipesName = recipes[i].name;
-        //     let ingredients = recipes[i].ingredients;
-        //     for (var k = 0 ; k < recipesFilter.length; k++){
-        //         if (recipesFilter[k].includes(recipesName)){
-        //             if (ingredients.includes(IndexIngredient.textContent)){
-        //                 elementArrayFilter.splice(IndexIngredient.textContent)
-        //             }
-        //         }
-        //     }
-        // }
+            // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
+            let IndexIngredientText = IndexIngredient.textContent;
+                InputIngredientsFilter.addEventListener("change", function (){
+                    if(IndexIngredientText.includes(InputIngredientsFilter.value)){
+                    console.log("ce filtre fonctionne")
+                    }
+                })
+
                 elementArrayFilter.push(IndexIngredient.textContent);
                 console.log("liste des éléments filtrés");
                 console.log(elementArrayFilter);
@@ -82,16 +80,23 @@
                 // ingredientArrayResult.splice(IndexIngredient.textContent);
                 // console.log(ingredientArrayResult)
             }) 
-    }   
+        }
 }
 
-        // ingredients__filter.addEventListener("change", function (){
-        //     if(IndexIngredient.includes(InputFilter)){
-        //         DivIngredient.removeChild
-        //     }
-        // })
 
 
+    //     for(var i = 0 ; i <recipes.length; i++){ 
+    //         let recipesName = recipes[i].name;
+    //         let ingredients = recipes[i].ingredients;
+
+    //             if (ingredients.includes(IndexIngredient.textContent)){
+
+    //                      console.log("ce filtre fonctionne")
+                    
+                
+    //         }
+    //     }
+    // })
 
 
 
@@ -124,7 +129,7 @@ function RemoveIngredientArray (){
         DivIngredient.removeChild(DivIngredient.firstChild);
     }
  }
- DivIngredient
+
  
  //----- montre les Div de ApplianceArray -----
 
