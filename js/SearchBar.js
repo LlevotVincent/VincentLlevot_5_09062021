@@ -1,5 +1,10 @@
 
 const searchBar = document.getElementById("searchbar__text");
+const mainGrid = document.getElementById("main_grid");
+
+let ingredientArrayFilter = [];
+let applianceArrayFilter = [];
+let ustensilArrayFilter = [];
 
     //**************** creer un tableau des ingrédients, appareils et ustensiles****************
     let ingredientArray = [];
@@ -43,22 +48,12 @@ function createElementArray (){
     
     //**************** lance la recherche par la barre de recherche ****************
 
-    let ingredientArrayFilter = [];
-    let applianceArrayFilter = [];
-    let ustensilArrayFilter = [];
-    searchBar.addEventListener("change", ElementArrayFilter);
+
+searchBar.addEventListener("change", ElementArrayFilter);
     
-// function Filter(){
-//     const inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-//     ElementArrayFilter(inputSearchBar);
-//     }
-
-
     //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
 function ElementArrayFilter(){
     let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        // noAccent(inputSearchBar)
     let inputSearchBarSplit = inputSearchBar.split(" ");
     elementArrayFilter = []
     ingredientArrayFilter = [];
@@ -82,7 +77,6 @@ function ElementArrayFilter(){
                 }
             } 
         }
-
         for (var i = 0 ; i < ustensilArray.length; i++){
             if(ustensilArray[i].includes(inputSearchBarSplit)){
                 elementArrayFilter.push(ustensilArray[i]);
@@ -92,7 +86,12 @@ function ElementArrayFilter(){
                 }
             }
         }
-
+        for(var i = 0 ; i <recipes.length; i++){
+            let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if(recipeName.includes(inputSearchBarSplit)){
+                elementArrayFilter.push(recipeName);
+            }
+        }
     console.log("liste des éléments filtrés");
     console.log(elementArrayFilter);
     RecipesFilter(elementArrayFilter);     
@@ -113,6 +112,11 @@ function ElementArrayFilter(){
                     if (!recipesFilter.includes(recipeName)){
                     recipesFilter.push(recipeName);
                     }
+                }
+            }
+            if(recipeName .includes (elementArrayFilter[i])){
+                if (!recipesFilter.includes(recipeName)){
+                recipesFilter.push(recipeName);
                 }
             }
             let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -140,7 +144,7 @@ function ElementArrayFilter(){
     //**************** creation de carte pour les recettes filtrés ****************
     
     function CreateCard(){
-        const mainGrid = document.getElementById("main_grid");
+
     //--- reinitialise l affichage ---
         while (mainGrid.firstChild) {
             mainGrid.removeChild(mainGrid.firstChild);}

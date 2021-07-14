@@ -5,6 +5,8 @@
  const IngredientChevronUp =  document.getElementById("chevronIngredient-up");
  const DivIngredient = document.getElementById("IngredientsArray");
  const ResultFilter = document.getElementById("resultfilterbox");
+ const InputFilter = document.getElementById("ingredients__filter")
+ let ingredientArrayResult = [];
  
 
  const FilterAppliances = document.getElementById("filterAppliances");
@@ -26,6 +28,7 @@
  IngredientChevronDown.addEventListener("click", DisplayIngredientArray)
 
  function DisplayIngredientArray (){
+    elementArrayFilter = [];
     //montre la Div de ingredient Array
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
@@ -36,6 +39,7 @@
         DivIngredient.appendChild(IndexIngredient);
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
+        FilterIngredients.classList.add("activefilter");
 
         //cree le tag ingredient
         let IngredientResultFilter = document.createElement("div");
@@ -49,24 +53,68 @@
                 IngredientResultFilter.classList.add("Filter","filter1");
                 ResultFilterText.classList.add("result__text")
                 ResultFilterIcon.classList.add("far", "fa-times-circle");
-                ResultFilterText.innerText = IndexIngredient.textContent; 
+                ResultFilterText.innerText = IndexIngredient.textContent;
+
+        // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
+        // for(var i = 0 ; i <recipes.length; i++){ 
+        //     let recipesName = recipes[i].name;
+        //     let ingredients = recipes[i].ingredients;
+        //     for (var k = 0 ; k < recipesFilter.length; k++){
+        //         if (recipesFilter[k].includes(recipesName)){
+        //             if (ingredients.includes(IndexIngredient.textContent)){
+        //                 elementArrayFilter.splice(IndexIngredient.textContent)
+        //             }
+        //         }
+        //     }
+        // }
+                elementArrayFilter.push(IndexIngredient.textContent);
+                console.log("liste des éléments filtrés");
+                console.log(elementArrayFilter);
+                RecipesFilter(elementArrayFilter);     
             })
-        // ResultFilterIcon.addEventListener("click", resetFilter())  
+
+        //referme le tag
+            ResultFilterIcon.addEventListener("click", function(){
+                IngredientResultFilter.remove();
+                IndexIngredient.classList.remove("TextFilter_active");
+                while (mainGrid.firstChild) {
+                    mainGrid.removeChild(mainGrid.firstChild);}
+                // ingredientArrayResult.splice(IndexIngredient.textContent);
+                // console.log(ingredientArrayResult)
+            }) 
     }   
-    FilterIngredients.classList.add("activefilter")
 }
 
-    //Reset le filtre ingredient
+        // ingredients__filter.addEventListener("change", function (){
+        //     if(IndexIngredient.includes(InputFilter)){
+        //         DivIngredient.removeChild
+        //     }
+        // })
 
-    function resetFilter() {
-        ResultFilter.remove()
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
  //************************* cache les Div de IngredientArray ************************* 
 
 IngredientChevronUp.addEventListener("click", RemoveIngredientArray)
+DivIngredient.addEventListener("mouseleave", RemoveIngredientArray)
 function RemoveIngredientArray (){
     IngredientChevronUp.classList.add("hidden");
     IngredientChevronDown.classList.remove("hidden");
@@ -76,6 +124,7 @@ function RemoveIngredientArray (){
         DivIngredient.removeChild(DivIngredient.firstChild);
     }
  }
+ DivIngredient
  
  //----- montre les Div de ApplianceArray -----
 
