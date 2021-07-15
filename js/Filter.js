@@ -1,104 +1,107 @@
- //**************** importe les tableaux ingrédients, appareils et ustensiles  dans les filtres ****************
+//**************** importe les tableaux ingrédients, appareils et ustensiles  dans les filtres ****************
 
- const FilterIngredients = document.getElementById("filterIngredients");
- const IngredientChevronDown =  document.getElementById("chevronIngredient-down");
- const IngredientChevronUp =  document.getElementById("chevronIngredient-up");
- const DivIngredient = document.getElementById("IngredientsArray");
- const ResultFilter = document.getElementById("resultfilterbox");
- const InputIngredientsFilter = document.getElementById("ingredients__filter")
- let ingredientArrayResult = [];
+const FilterIngredients = document.getElementById("filterIngredients");
+const IngredientChevronDown = document.getElementById("chevronIngredient-down");
+const IngredientChevronUp = document.getElementById("chevronIngredient-up");
+const DivIngredient = document.getElementById("IngredientsArray");
+const ResultFilter = document.getElementById("resultfilterbox");
+const InputIngredientsFilter = document.getElementById("ingredients__filter")
+let ingredientArrayResult = [];
 
 
- const FilterAppliances = document.getElementById("filterAppliances");
- const ApplianceChevronDown =  document.getElementById("chevronAppliance-down");
- const ApplianceChevronUp =  document.getElementById("chevronAppliance-up");
- const DivAppliance = document.getElementById("AppliancesArray");
+const FilterAppliances = document.getElementById("filterAppliances");
+const ApplianceChevronDown = document.getElementById("chevronAppliance-down");
+const ApplianceChevronUp = document.getElementById("chevronAppliance-up");
+const DivAppliance = document.getElementById("AppliancesArray");
 
- const FilterUstensils = document.getElementById("filterUstensils");
- const UstensilChevronDown =  document.getElementById("chevronUstensil-down");
- const UstensilChevronUp =  document.getElementById("chevronUstensil-up");
- const DivUstensil = document.getElementById("UstensilsArray");
+const FilterUstensils = document.getElementById("filterUstensils");
+const UstensilChevronDown = document.getElementById("chevronUstensil-down");
+const UstensilChevronUp = document.getElementById("chevronUstensil-up");
+const DivUstensil = document.getElementById("UstensilsArray");
 
 //  const FilterAppliance = document.querySelector("li.filter2");
 //  const FilterUstensil = document.querySelector("li.filter3");
 
 
- //*************************  montre la Div de IngredientArray ************************* 
+//*************************  montre la Div de IngredientArray ************************* 
 
- IngredientChevronDown.addEventListener("click", DisplayIngredientArray)
+IngredientChevronDown.addEventListener("click", DisplayIngredientArray)
 
- function DisplayIngredientArray (){
+function DisplayIngredientArray() {
     elementArrayFilter = [];
 
-    //montre la Div de ingredient Array
+    // ----- Affiche la Div de ingredient Array -----
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
     IngredientChevronUp.classList.remove("hidden");
 
-    for (var i = 0 ; i < ingredientArray.length; i++){
+    for (var i = 0; i < ingredientArray.length; i++) {
         let IndexIngredient = document.createElement("p");
         DivIngredient.appendChild(IndexIngredient);
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
         FilterIngredients.classList.add("activefilter");
 
-        //cree le tag ingredient
+        // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
+        InputIngredientsFilter.addEventListener("input", function () {
+            console.log("ca marche")
+            if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
+                console.log("j'ai trouvé un ingredient")
+                DivIngredient.removeChild(IndexIngredient)
+            }
+        })
+
+
+
+        // ----- cree le tag ingredient -----
         let IngredientResultFilter = document.createElement("div");
-        let ResultFilterText =  document.createElement("p");
+        let ResultFilterText = document.createElement("p");
         let ResultFilterIcon = document.createElement("i")
-        
-            IndexIngredient.addEventListener("click", function(){
-                ResultFilter.appendChild(IngredientResultFilter);
-                IngredientResultFilter.appendChild(ResultFilterText);
-                IngredientResultFilter.appendChild(ResultFilterIcon);
-                IndexIngredient.classList.add("TextFilter_active");
-                IngredientResultFilter.classList.add("Filter","filter1");
-                ResultFilterText.classList.add("result__text")
-                ResultFilterIcon.classList.add("far", "fa-times-circle");
-                ResultFilterText.innerText = IndexIngredient.textContent;
 
-            // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
-            let IndexIngredientText = IndexIngredient.textContent;
-                InputIngredientsFilter.addEventListener("change", function (){
-                    if(IndexIngredientText.includes(InputIngredientsFilter.value)){
-                    console.log("ce filtre fonctionne")
-                    }
-                })
+        IndexIngredient.addEventListener("click", function () {
+            ResultFilter.appendChild(IngredientResultFilter);
+            IngredientResultFilter.appendChild(ResultFilterText);
+            IngredientResultFilter.appendChild(ResultFilterIcon);
+            IndexIngredient.classList.add("TextFilter_active");
+            IngredientResultFilter.classList.add("Filter", "filter1");
+            ResultFilterText.classList.add("result__text")
+            ResultFilterIcon.classList.add("far", "fa-times-circle");
+            ResultFilterText.innerText = IndexIngredient.textContent;
 
-                elementArrayFilter.push(IndexIngredient.textContent);
-                console.log("liste des éléments filtrés");
-                console.log(elementArrayFilter);
-                RecipesFilter(elementArrayFilter);     
-            })
+            // ----- affiche les recettes disponibles pour le tag -----
+            elementArrayFilter.push(IndexIngredient.textContent);
+            console.log("liste des éléments filtrés");
+            console.log(elementArrayFilter);
+            RecipesFilter(elementArrayFilter);
+        })
 
-        //referme le tag
-            ResultFilterIcon.addEventListener("click", function(){
-                IngredientResultFilter.remove();
-                IndexIngredient.classList.remove("TextFilter_active");
-                while (mainGrid.firstChild) {
-                    mainGrid.removeChild(mainGrid.firstChild);}
-                // ingredientArrayResult.splice(IndexIngredient.textContent);
-                // console.log(ingredientArrayResult)
-            }) 
-        }
+        // ----- referme le tag -----
+        ResultFilterIcon.addEventListener("click", function () {
+            IngredientResultFilter.remove();
+            IndexIngredient.classList.remove("TextFilter_active");
+            while (mainGrid.firstChild) {
+                mainGrid.removeChild(mainGrid.firstChild);
+            }
+            // ingredientArrayResult.splice(IndexIngredient.textContent);
+            // console.log(ingredientArrayResult)
+        })
+    }
 }
 
 
 
-    //     for(var i = 0 ; i <recipes.length; i++){ 
-    //         let recipesName = recipes[i].name;
-    //         let ingredients = recipes[i].ingredients;
+//     for(var i = 0 ; i <recipes.length; i++){ 
+//         let recipesName = recipes[i].name;
+//         let ingredients = recipes[i].ingredients;
 
-    //             if (ingredients.includes(IndexIngredient.textContent)){
+//             if (ingredients.includes(IndexIngredient.textContent)){
 
-    //                      console.log("ce filtre fonctionne")
-                    
-                
-    //         }
-    //     }
-    // })
+//                      console.log("ce filtre fonctionne")
 
 
+//         }
+//     }
+// })
 
 
 
@@ -116,11 +119,13 @@
 
 
 
- //************************* cache les Div de IngredientArray ************************* 
+
+
+//************************* cache les Div de IngredientArray ************************* 
 
 IngredientChevronUp.addEventListener("click", RemoveIngredientArray)
 DivIngredient.addEventListener("mouseleave", RemoveIngredientArray)
-function RemoveIngredientArray (){
+function RemoveIngredientArray() {
     IngredientChevronUp.classList.add("hidden");
     IngredientChevronDown.classList.remove("hidden");
     DivIngredient.classList.add("hidden");
@@ -128,19 +133,19 @@ function RemoveIngredientArray (){
     while (DivIngredient.firstChild) {
         DivIngredient.removeChild(DivIngredient.firstChild);
     }
- }
+}
 
- 
- //----- montre les Div de ApplianceArray -----
 
- ApplianceChevronDown.addEventListener("click", DisplayApplianceArray)
- function DisplayApplianceArray (){
+//----- montre les Div de ApplianceArray -----
+
+ApplianceChevronDown.addEventListener("click", DisplayApplianceArray)
+function DisplayApplianceArray() {
 
     DivAppliance.classList.remove("hidden")
     ApplianceChevronDown.classList.add("hidden");
     ApplianceChevronUp.classList.remove("hidden");
 
-    for (var i = 0 ; i < applianceArray.length; i++){
+    for (var i = 0; i < applianceArray.length; i++) {
         let IndexAppliance = document.createElement("p");
         DivAppliance.appendChild(IndexAppliance);
         IndexAppliance.classList.add("TextFilter");
@@ -149,10 +154,10 @@ function RemoveIngredientArray (){
     FilterAppliances.classList.add("activefilter")
 }
 
- //----- cache les Div de ApplianceArray -----
+//----- cache les Div de ApplianceArray -----
 
 ApplianceChevronUp.addEventListener("click", RemoveApplianceArray)
-function RemoveApplianceArray (){
+function RemoveApplianceArray() {
     ApplianceChevronUp.classList.add("hidden");
     ApplianceChevronDown.classList.remove("hidden");
     DivAppliance.classList.add("hidden");
@@ -160,30 +165,39 @@ function RemoveApplianceArray (){
     while (DivAppliance.firstChild) {
         DivAppliance.removeChild(DivAppliance.firstChild);
     }
- }
+}
 
- //----- montre les Div de UstensilArray -----
+//----- montre les Div de UstensilArray -----
 
- UstensilChevronDown.addEventListener("click", DisplayUstensilArray)
- function DisplayUstensilArray (){
+UstensilChevronDown.addEventListener("click", DisplayUstensilArray)
+function DisplayUstensilArray() {
 
     DivUstensil.classList.remove("hidden")
     UstensilChevronDown.classList.add("hidden");
     UstensilChevronUp.classList.remove("hidden");
 
-    for (var i = 0 ; i < ustensilArray.length; i++){
+    for (var i = 0; i < ustensilArray.length; i++) {
         let IndexUstensil = document.createElement("p");
         DivUstensil.appendChild(IndexUstensil);
         IndexUstensil.classList.add("IngredientText");
         IndexUstensil.innerText = ustensilArray[i];
+
+        // // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
+        // InputIngredientsFilter.addEventListener("change", function () {
+        //     console.log("ca marche")
+        //     if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
+        //         console.log("j'ai trouvé un ingredient")
+        //         DivIngredient.removeChild(IndexIngredient)
+        //     }
+        // })
     }
     FilterUstensils.classList.add("activefilter")
 }
 
- //----- cache les Div de UstensilArray -----
+//----- cache les Div de UstensilArray -----
 
 UstensilChevronUp.addEventListener("click", RemoveUstensilArray)
-function RemoveUstensilArray (){
+function RemoveUstensilArray() {
     UstensilChevronUp.classList.add("hidden");
     UstensilChevronDown.classList.remove("hidden");
     DivUstensil.classList.add("hidden");
@@ -191,6 +205,6 @@ function RemoveUstensilArray (){
     while (DivUstensil.firstChild) {
         DivUstensil.removeChild(DivUstensil.firstChild);
     }
- }
+}
 
 
