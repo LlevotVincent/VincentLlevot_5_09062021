@@ -45,6 +45,12 @@ body{
     margin-right: 16.44px;
 
 }
+#searchbar__text::placeholder{
+    color: rgb(44, 44, 44); 
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
 
         /*Barre de Filtre*/
 
@@ -63,28 +69,20 @@ body{
     margin-right: 20px;
     border-radius: 5px;}
 
-.result__text {
-    width: 60%;
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    font-size: 18px;
-    background: transparent;
-    outline: none;
-    border: none;
-    margin: 0 15px;
-}
 
 
-
-#filterbox{
+#filterbox {
     display: flex;
     padding: 0;}
 
-.Filter{
+.Filter {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style-type: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
     width: 170px;
     height: 69px;
     margin-right: 20px;
@@ -107,16 +105,52 @@ body{
 
 .filter__text{
     width: 60%;
+    color: white;
     font-family: 'Lato', sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 18px;
     background: transparent;
     outline: none;
     border: none;
     margin-left: 15px;
 }
+
+.TagFilter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    width: auto;
+    height: 37px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+.TagFilter1{
+    background-color:#3282F7;
+    position: relative;
+}
+
+.TagText {
+    width: 60%;
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    background: transparent;
+    outline: none;
+    border: none;
+    margin: 0 15px;
+}
+    
 ::placeholder{
-    color: rgb(44, 44, 44);
+    color: white; 
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
 }
 .fa-chevron-down, .fa-times-circle{
     margin-right: 18px;
@@ -145,37 +179,102 @@ body{
     grid-template-rows: auto auto auto;}
 
 .img_food, .ingredients, .step, .recipe_title {
-    background-color: #E7E7E7;
-    color: #fff;
-    border-radius: 5px;
-    padding: 20px;
     margin: 0;
-    font-size: 150%;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    display: flex;
 }
 .a {
     background-color: #C7BEBE;
     grid-column: 1 / 3;
     grid-row: 1;
     color: black;
+    width: auto;
+    height: 178px;
+
 }
 .b {
     background-color: #E7E7E7;
     grid-column: 1 ;
     grid-row: 3 ;
     color: black;
+    width: auto;
+    height: 138px;
+
 }
 .c {
     background-color: #E7E7E7;
     grid-column: 2;
     grid-row: 3;
     color: black;
+    width: auto;
+    height: 138px;
+
 }
 .d {
-    background-color: #6d6d6d;
+    background-color: #E7E7E7;
     grid-column: 1 / 3;
     grid-row: 2;
     color: black;
+    width: auto;
+    height: 40px;
 }
+.recipe_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Card_name{
+    margin: 0;
+    padding: 0 0 0 20px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.time_container{
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.card_time{
+    padding-left: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+}
+.card_step {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    overflow:hidden;
+    text-overflow: ellipsis;
+
+}
+.cardStepText {
+    padding: 10px;
+    margin: 0;
+    width: auto;
+    max-height: auto;
+}
+
+.card_ingredientList{
+    margin: 0;
+    padding: 0 0 0 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
 
 /* div ingredient Array */
 
@@ -211,7 +310,13 @@ body{
     width: auto;
     height: auto;
     display: grid;
-    grid-template-columns: repeat(3, 200px); ;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: auto;
+}
+
+.ArrayFilter{
+    display: grid;
+    grid-template-columns: repeat(1, 200px);
     grid-template-rows: auto;
 }
 
@@ -222,13 +327,13 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
     font-family: 'Lato', sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 14px;
     color: white;
 }
 
 .TextFilter_active{
-    color: rgb(51, 51, 51);
+    color: grey;
 }
 
 .hidden{

@@ -5,14 +5,19 @@ const IngredientChevronDown = document.getElementById("chevronIngredient-down");
 const IngredientChevronUp = document.getElementById("chevronIngredient-up");
 const DivIngredient = document.getElementById("IngredientsArray");
 const ResultFilter = document.getElementById("resultfilterbox");
-const InputIngredientsFilter = document.getElementById("ingredients__filter")
+const InputIngredientsFilter = document.getElementById("ingredients__filter");
 let ingredientArrayResult = [];
-
+// let IndexIngredient = document.createElement("p");
+// let TagDiv = document.createElement("div");
+// let TagText = document.createElement("p");
+// let TagIcon = document.createElement("i")
 
 const FilterAppliances = document.getElementById("filterAppliances");
 const ApplianceChevronDown = document.getElementById("chevronAppliance-down");
 const ApplianceChevronUp = document.getElementById("chevronAppliance-up");
 const DivAppliance = document.getElementById("AppliancesArray");
+
+const InputAppliancesFilter = document.getElementById("appliances__filter");
 
 const FilterUstensils = document.getElementById("filterUstensils");
 const UstensilChevronDown = document.getElementById("chevronUstensil-down");
@@ -26,11 +31,12 @@ const DivUstensil = document.getElementById("UstensilsArray");
 //*************************  montre la Div de IngredientArray ************************* 
 
 IngredientChevronDown.addEventListener("click", DisplayIngredientArray)
+// InputIngredientsFilter.addEventListener("input", DisplayIngredientArray)
+
+// ----- Affiche la Div de ingredient Array -----
 
 function DisplayIngredientArray() {
     elementArrayFilter = [];
-
-    // ----- Affiche la Div de ingredient Array -----
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
     IngredientChevronUp.classList.remove("hidden");
@@ -41,91 +47,68 @@ function DisplayIngredientArray() {
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
         FilterIngredients.classList.add("activefilter");
+        IndexIngredient.addEventListener("click", tagOpen);
+        IndexIngredient.addEventListener("click", DisplayRecipesByFilter);
 
-        // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
-        InputIngredientsFilter.addEventListener("input", function () {
-            console.log("ca marche")
+        InputIngredientsFilter.addEventListener("keyup", function () {
             if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
-                console.log("j'ai trouvé un ingredient")
                 DivIngredient.removeChild(IndexIngredient)
             }
-        })
-
-
-
-        // ----- cree le tag ingredient -----
-        let IngredientResultFilter = document.createElement("div");
-        let ResultFilterText = document.createElement("p");
-        let ResultFilterIcon = document.createElement("i")
-
-        IndexIngredient.addEventListener("click", function () {
-            ResultFilter.appendChild(IngredientResultFilter);
-            IngredientResultFilter.appendChild(ResultFilterText);
-            IngredientResultFilter.appendChild(ResultFilterIcon);
-            IndexIngredient.classList.add("TextFilter_active");
-            IngredientResultFilter.classList.add("Filter", "filter1");
-            ResultFilterText.classList.add("result__text")
-            ResultFilterIcon.classList.add("far", "fa-times-circle");
-            ResultFilterText.innerText = IndexIngredient.textContent;
-
-            // ----- affiche les recettes disponibles pour le tag -----
-            elementArrayFilter.push(IndexIngredient.textContent);
-            console.log("liste des éléments filtrés");
-            console.log(elementArrayFilter);
-            RecipesFilter(elementArrayFilter);
-        })
-
-        // ----- referme le tag -----
-        ResultFilterIcon.addEventListener("click", function () {
-            IngredientResultFilter.remove();
-            IndexIngredient.classList.remove("TextFilter_active");
-            while (mainGrid.firstChild) {
-                mainGrid.removeChild(mainGrid.firstChild);
-            }
-            // ingredientArrayResult.splice(IndexIngredient.textContent);
-            // console.log(ingredientArrayResult)
         })
     }
 }
 
+// ----- cree le tag ingredient -----
 
+function tagOpen() {
+    let TagDiv = document.createElement("div");
+    let TagText = document.createElement("p");
+    let TagIcon = document.createElement("i")
+    ResultFilter.appendChild(TagDiv);
+    TagDiv.appendChild(TagText);
+    TagDiv.appendChild(TagIcon);
+    this.classList.add("TextFilter_active");
+    TagDiv.classList.add("TagFilter", "TagFilter1");
+    TagText.classList.add("TagText")
+    TagIcon.classList.add("far", "fa-times-circle");
+    TagText.innerText = this.textContent;
+    CloseIngredientArray()
+    // ----- referme le tag -----
+    TagIcon.addEventListener("click", function () {
+        TagDiv.remove()
+        this.classList.remove("TextFilter_active");
+        while (mainGrid.firstChild) {
+            mainGrid.removeChild(mainGrid.firstChild);
+        }
+    })
+}
 
-//     for(var i = 0 ; i <recipes.length; i++){ 
-//         let recipesName = recipes[i].name;
-//         let ingredients = recipes[i].ingredients;
+// ----- affiche les recettes disponibles pour le tag -----
+function DisplayRecipesByFilter() {
 
-//             if (ingredients.includes(IndexIngredient.textContent)){
+    for (var i = 0; i < recipesFind.length; i++) {
+        for (var j = 0; j < recipes.length; j++) {
+            let recipesName = recipes[j].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let ingredients = recipes[j].ingredients
+            for (var k = 0; k < ingredients.length; k++) {
+                let ingredient = ingredients[k].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if (recipesFind[i] == recipesName) {
+                    if (ingredient.includes(this.textContent)) {
+                        elementArrayFilter.push(recipesName);
+                        console.log("liste des éléments filtrés");
+                        console.log(elementArrayFilter);
+                        RecipesToFind(elementArrayFilter);
+                    }
+                }
+            }
+        }
+    }
+}
+// ----- cache les Div de IngredientArray ----- 
 
-//                      console.log("ce filtre fonctionne")
-
-
-//         }
-//     }
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//************************* cache les Div de IngredientArray ************************* 
-
-IngredientChevronUp.addEventListener("click", RemoveIngredientArray)
-DivIngredient.addEventListener("mouseleave", RemoveIngredientArray)
-function RemoveIngredientArray() {
+IngredientChevronUp.addEventListener("click", CloseIngredientArray)
+DivIngredient.addEventListener("mouseleave", CloseIngredientArray)
+function CloseIngredientArray() {
     IngredientChevronUp.classList.add("hidden");
     IngredientChevronDown.classList.remove("hidden");
     DivIngredient.classList.add("hidden");
@@ -136,9 +119,11 @@ function RemoveIngredientArray() {
 }
 
 
-//----- montre les Div de ApplianceArray -----
+//******************** montre les Div de ApplianceArray ********************
 
 ApplianceChevronDown.addEventListener("click", DisplayApplianceArray)
+// InputApplianceFilter.addEventListener("input", DisplayApplianceArray)
+
 function DisplayApplianceArray() {
 
     DivAppliance.classList.remove("hidden")
@@ -150,8 +135,15 @@ function DisplayApplianceArray() {
         DivAppliance.appendChild(IndexAppliance);
         IndexAppliance.classList.add("TextFilter");
         IndexAppliance.innerText = applianceArray[i];
+        FilterAppliances.classList.add("activefilter");
+        IndexAppliance.addEventListener("click", tagOpen);
+        IndexAppliance.addEventListener("click", DisplayRecipesByFilter);
+        InputAppliancesFilter.addEventListener("keyup", function () {
+            if (!IndexAppliance.textContent.includes(InputAppliancesFilter.value)) {
+                DivAppliance.removeChild(IndexAppliance)
+            }
+        })
     }
-    FilterAppliances.classList.add("activefilter")
 }
 
 //----- cache les Div de ApplianceArray -----

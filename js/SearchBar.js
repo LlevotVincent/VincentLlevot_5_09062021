@@ -94,13 +94,13 @@ function ElementArrayFilter(){
         }
     console.log("liste des éléments filtrés");
     console.log(elementArrayFilter);
-    RecipesFilter(elementArrayFilter);     
+    RecipesToFind(elementArrayFilter);     
 }
 
     //**************** créer un tableau de recette filtrées par ingrédient ****************
-    var recipesFilter = [];
-    function RecipesFilter() {
-    recipesFilter = [];
+    var recipesFind = [];
+    function RecipesToFind() {
+    recipesFind = [];
 
     for(var k = 0 ; k <recipes.length; k++){
     let recipeName = recipes[k].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -109,36 +109,36 @@ function ElementArrayFilter(){
             for(var j = 0 ; j < ingredients.length; j++){
             let ingredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if(ingredient .includes (elementArrayFilter[i])){
-                    if (!recipesFilter.includes(recipeName)){
-                    recipesFilter.push(recipeName);
+                    if (!recipesFind.includes(recipeName)){
+                    recipesFind.push(recipeName);
                     }
                 }
             }
             if(recipeName .includes (elementArrayFilter[i])){
-                if (!recipesFilter.includes(recipeName)){
-                recipesFilter.push(recipeName);
+                if (!recipesFind.includes(recipeName)){
+                recipesFind.push(recipeName);
                 }
             }
             let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
               if( appliances .includes ( elementArrayFilter[i])){
-                    if (!recipesFilter.includes(recipeName)){
-                    recipesFilter.push(recipeName);
+                    if (!recipesFind.includes(recipeName)){
+                    recipesFind.push(recipeName);
                     }
                 }
             let ustensils = recipes[k].ustensils;
             for(var j = 0 ; j < ustensils.length; j++){
                 let ustensil = ustensils[j].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if( ustensil .includes(elementArrayFilter[i])){
-                    if (!recipesFilter.includes(recipeName)){
-                    recipesFilter.push(recipeName);
+                    if (!recipesFind.includes(recipeName)){
+                    recipesFind.push(recipeName);
                     }
                 }
             }   
         }  
-        CreateCard(recipesFilter);        
+        CreateCard(recipesFind);        
     }    
     console.log("liste des recettes associés");
-    console.log(recipesFilter);
+    console.log(recipesFind);
     }
     
     //**************** creation de carte pour les recettes filtrés ****************
@@ -148,32 +148,116 @@ function ElementArrayFilter(){
     //--- reinitialise l affichage ---
         while (mainGrid.firstChild) {
             mainGrid.removeChild(mainGrid.firstChild);}
-    
-        for(var i = 0; i < recipesFilter.length ; i++){
-    
-            var recipeCard = document.createElement("div");
+
+            
+    for(var k = 0 ; k < recipesFind.length ; k++){
+        for(var i =0 ; i < recipes.length ; i++){
+            var recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");;
+            var recipeTime = recipes[i].time;
+            var recipeStep = recipes[i].description
+            var recipesIngredients = recipes[i].ingredients;
+
+
+        if(recipesFind[k] === recipeName){
+        //  var card =  
+        // `<div id="main_grid">
+        //     <a href="#" class="cooking_recipe">
+        //     <div class="img_food a"></div>
+        //     <div class="recipe_Name d">
+        //         <h2 class="recipe_title></h2>
+        //         <i class="far fa-clock"></i>
+        //         <p class="cardTime"></p>
+        //     </div>
+        //     <div class="ingredients b"></div>
+        //     <div class="step c"></div>
+        //   </a>
+        //   </div>`
+        //   const titleRecipes = document.getElementsByClassName("recipe_title")
+        //   titleRecipes.innerHTML = recipeName;
+        //  const cardTime = document.getElementsByClassName("cardTime")       
+        //   cardTime.innerHTML = recipeTime;
+
+        //  main.innerHTML = card
+         
+
+            let recipeCard = document.createElement("div");
             recipeCard.classList.add("cooking_recipe");
             mainGrid.appendChild(recipeCard);
     
-            var imgFood = document.createElement("div");
+            let imgFood = document.createElement("div");
             imgFood.classList.add("img_food","a");
             recipeCard.appendChild(imgFood);
+
+            let titleRecipes = document.createElement("div");
+                titleRecipes.classList.add("recipe_title","d");
+            let cardName = document.createElement("h2");
+                cardName.classList.add("Card_name")
+            let timeContainer = document.createElement("div");
+                timeContainer.classList.add("time_container");
+            let cardIcon = document.createElement("i");
+                cardIcon.classList.add("far", "fa-clock");
+            let cardTime = document.createElement("p");
+                cardTime.classList.add("card_time")
+            recipeCard.appendChild(titleRecipes);
+            titleRecipes.appendChild(cardName);
+            titleRecipes.appendChild(timeContainer);
+            timeContainer.appendChild(cardIcon);
+            timeContainer.appendChild(cardTime);
+            cardName.innerText = recipeName;
+            cardTime.innerText = recipeTime + 'min';
     
-            var titleRecipes = document.createElement("h2")
-            titleRecipes.classList.add("recipe_title","d")
-            recipeCard.appendChild(titleRecipes)
-            titleRecipes.innerText = recipesFilter[i];
-    
-            var ingredient =  document.createElement("div")
-            ingredient.classList.add("ingredients","b")
-            recipeCard.appendChild(ingredient);
-    
-            var step =  document.createElement("div")
-            step.classList.add("step","c")
-            recipeCard.appendChild(step);
+            let cardStep =  document.createElement("div")
+            cardStep.classList.add("card_step","c");
+            let cardStepText = document.createElement("p");
+            cardStepText.classList.add("cardStepText");
+            recipeCard.appendChild(cardStep);
+            cardStep.appendChild(cardStepText)
+            cardStepText.innerText = recipeStep;
+
+
+            let cardingredient =  document.createElement("div")
+            cardingredient.classList.add("card_ingredients","b")
+            recipeCard.appendChild(cardingredient);
+            for(var j =0 ; j < recipesIngredients.length ;j++){
+                let cardIngredientList = document.createElement("p");
+                cardIngredientList.classList.add("card_ingredientList")
+                cardingredient.appendChild(cardIngredientList)
+                cardIngredientList.innerText = recipesIngredients[j].ingredient;
+            }
         }
+
     }
+
+}
+
+    }
+
     
+
+
+
+        //     for(var i =0; i<recipes.length;i++){
+        //         let recipeName = recipes[i].name;
+        //         let recipeTime = recipes[i].time;
+        //         let recipeStep = recipes[i].description
+        //         let recipesIngredients = recipes[i].ingredients;
+        
+       
+
+     
+
+        //     for(var j = 0 ; j < recipesIngredients.length; j++){
+        //         let ingredient = recipesIngredients[j].ingredient
+        //         let ingredientQuantity = recipesIngredients[j].quantity
+        //         let ingredientUnit =  recipesIngredients[j].unit
+         
+
+        //     }
+        // }
+
+    //     }
+    // }
+
     
     
     
