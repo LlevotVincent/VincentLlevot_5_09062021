@@ -6,7 +6,7 @@ const IngredientChevronUp = document.getElementById("chevronIngredient-up");
 const DivIngredient = document.getElementById("IngredientsArray");
 const ResultFilter = document.getElementById("resultfilterbox");
 const InputIngredientsFilter = document.getElementById("ingredients__filter");
-let ingredientArrayResult = [];
+// let ingredientArrayResult = [];
 // let IndexIngredient = document.createElement("p");
 // let TagDiv = document.createElement("div");
 // let TagText = document.createElement("p");
@@ -16,13 +16,13 @@ const FilterAppliances = document.getElementById("filterAppliances");
 const ApplianceChevronDown = document.getElementById("chevronAppliance-down");
 const ApplianceChevronUp = document.getElementById("chevronAppliance-up");
 const DivAppliance = document.getElementById("AppliancesArray");
-
 const InputAppliancesFilter = document.getElementById("appliances__filter");
 
 const FilterUstensils = document.getElementById("filterUstensils");
 const UstensilChevronDown = document.getElementById("chevronUstensil-down");
 const UstensilChevronUp = document.getElementById("chevronUstensil-up");
 const DivUstensil = document.getElementById("UstensilsArray");
+const InputustensilsFilter = document.getElementById("ustensils__filter");
 
 //  const FilterAppliance = document.querySelector("li.filter2");
 //  const FilterUstensil = document.querySelector("li.filter3");
@@ -47,7 +47,7 @@ function DisplayIngredientArray() {
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
         FilterIngredients.classList.add("activefilter");
-        IndexIngredient.addEventListener("click", tagOpen);
+        IndexIngredient.addEventListener("click", tagIngredientOpen);
         IndexIngredient.addEventListener("click", DisplayRecipesByFilter);
 
         InputIngredientsFilter.addEventListener("keyup", function () {
@@ -60,7 +60,7 @@ function DisplayIngredientArray() {
 
 // ----- cree le tag ingredient -----
 
-function tagOpen() {
+function tagIngredientOpen() {
     let TagDiv = document.createElement("div");
     let TagText = document.createElement("p");
     let TagIcon = document.createElement("i")
@@ -68,7 +68,7 @@ function tagOpen() {
     TagDiv.appendChild(TagText);
     TagDiv.appendChild(TagIcon);
     this.classList.add("TextFilter_active");
-    TagDiv.classList.add("TagFilter", "TagFilter1");
+    TagDiv.classList.add("TagFilter", "filter1");
     TagText.classList.add("TagText")
     TagIcon.classList.add("far", "fa-times-circle");
     TagText.innerText = this.textContent;
@@ -136,7 +136,7 @@ function DisplayApplianceArray() {
         IndexAppliance.classList.add("TextFilter");
         IndexAppliance.innerText = applianceArray[i];
         FilterAppliances.classList.add("activefilter");
-        IndexAppliance.addEventListener("click", tagOpen);
+        IndexAppliance.addEventListener("click", tagAppliancesOpen);
         IndexAppliance.addEventListener("click", DisplayRecipesByFilter);
         InputAppliancesFilter.addEventListener("keyup", function () {
             if (!IndexAppliance.textContent.includes(InputAppliancesFilter.value)) {
@@ -146,10 +146,35 @@ function DisplayApplianceArray() {
     }
 }
 
+// ----- cree le tag appliances -----
+
+function tagAppliancesOpen() {
+    let TagDiv = document.createElement("div");
+    let TagText = document.createElement("p");
+    let TagIcon = document.createElement("i")
+    ResultFilter.appendChild(TagDiv);
+    TagDiv.appendChild(TagText);
+    TagDiv.appendChild(TagIcon);
+    this.classList.add("TextFilter_active");
+    TagDiv.classList.add("TagFilter", "filter2");
+    TagText.classList.add("TagText")
+    TagIcon.classList.add("far", "fa-times-circle");
+    TagText.innerText = this.textContent;
+    CloseAppliancesArray()
+    // ----- referme le tag -----
+    TagIcon.addEventListener("click", function () {
+        TagDiv.remove()
+        this.classList.remove("TextFilter_active");
+        while (mainGrid.firstChild) {
+            mainGrid.removeChild(mainGrid.firstChild);
+        }
+    })
+}
 //----- cache les Div de ApplianceArray -----
 
-ApplianceChevronUp.addEventListener("click", RemoveApplianceArray)
-function RemoveApplianceArray() {
+ApplianceChevronUp.addEventListener("click", CloseAppliancesArray);
+DivIngredient.addEventListener("mouseleave", CloseAppliancesArray);
+function CloseAppliancesArray() {
     ApplianceChevronUp.classList.add("hidden");
     ApplianceChevronDown.classList.remove("hidden");
     DivAppliance.classList.add("hidden");
@@ -158,6 +183,7 @@ function RemoveApplianceArray() {
         DivAppliance.removeChild(DivAppliance.firstChild);
     }
 }
+
 
 //----- montre les Div de UstensilArray -----
 
@@ -171,25 +197,49 @@ function DisplayUstensilArray() {
     for (var i = 0; i < ustensilArray.length; i++) {
         let IndexUstensil = document.createElement("p");
         DivUstensil.appendChild(IndexUstensil);
-        IndexUstensil.classList.add("IngredientText");
+        IndexUstensil.classList.add("TextFilter");
         IndexUstensil.innerText = ustensilArray[i];
-
-        // // Pour filtrer les recettes a afficher suivant l input. Ne fonctionne pas
-        // InputIngredientsFilter.addEventListener("change", function () {
-        //     console.log("ca marche")
-        //     if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
-        //         console.log("j'ai trouvé un ingredient")
-        //         DivIngredient.removeChild(IndexIngredient)
-        //     }
-        // })
+        FilterUstensils.classList.add("activefilter");
+        IndexUstensil.addEventListener("click", tagUstensilsOpen);
+        IndexUstensil.addEventListener("click", DisplayRecipesByFilter);
+        InputustensilsFilter.addEventListener("keyup", function () {
+            if (!IndexUstensil.textContent.includes(InputustensilsFilter.value)) {
+                DivUstensil.removeChild(IndexUstensil)
+            }
+        })
     }
-    FilterUstensils.classList.add("activefilter")
+}
+
+// ----- cree le tag ustensils -----
+
+function tagUstensilsOpen() {
+    let TagDiv = document.createElement("div");
+    let TagText = document.createElement("p");
+    let TagIcon = document.createElement("i")
+    ResultFilter.appendChild(TagDiv);
+    TagDiv.appendChild(TagText);
+    TagDiv.appendChild(TagIcon);
+    this.classList.add("TextFilter_active");
+    TagDiv.classList.add("TagFilter", "filter3");
+    TagText.classList.add("TagText")
+    TagIcon.classList.add("far", "fa-times-circle");
+    TagText.innerText = this.textContent;
+    CloseUstensilsArray()
+    // ----- referme le tag -----
+    TagIcon.addEventListener("click", function () {
+        TagDiv.remove()
+        this.classList.remove("TextFilter_active");
+        while (mainGrid.firstChild) {
+            mainGrid.removeChild(mainGrid.firstChild);
+        }
+    })
 }
 
 //----- cache les Div de UstensilArray -----
 
-UstensilChevronUp.addEventListener("click", RemoveUstensilArray)
-function RemoveUstensilArray() {
+UstensilChevronUp.addEventListener("click", CloseUstensilsArray);
+DivUstensil.addEventListener("mouseleave", CloseUstensilsArray);
+function CloseUstensilsArray() {
     UstensilChevronUp.classList.add("hidden");
     UstensilChevronDown.classList.remove("hidden");
     DivUstensil.classList.add("hidden");

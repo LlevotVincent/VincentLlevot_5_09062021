@@ -130,11 +130,6 @@ body{
     color: white;
 }
 
-.TagFilter1{
-    background-color:#3282F7;
-    position: relative;
-}
-
 .TagText {
     width: 60%;
     font-family: 'Lato', sans-serif;
@@ -220,10 +215,12 @@ body{
     color: black;
     width: auto;
     height: 40px;
+    padding-bottom: 20px;
 }
 .recipe_title {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 .Card_name{
@@ -250,26 +247,27 @@ body{
     font-family: 'Lato', sans-serif;
     font-size: 18px;
     font-weight: 700;
-
 }
 .card_step {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 
 }
 .cardStepText {
-    padding: 10px;
     margin: 0;
-    width: auto;
-    max-height: auto;
+    padding: 0;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: clip;
+    height: 90%;
 }
 
 .card_ingredientList{
     margin: 0;
-    padding: 0 0 0 10px;
+    padding: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;

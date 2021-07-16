@@ -222,7 +222,7 @@ function ElementArrayFilter(){
                 let cardIngredientList = document.createElement("p");
                 cardIngredientList.classList.add("card_ingredientList")
                 cardingredient.appendChild(cardIngredientList)
-                cardIngredientList.innerText = recipesIngredients[j].ingredient;
+                cardIngredientList.innerText = recipesIngredients[j].ingredient +" : "+ recipesIngredients[j].quantity + " " + recipesIngredients[j].unit ;
             }
         }
 
