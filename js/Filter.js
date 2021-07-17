@@ -11,6 +11,10 @@ const InputIngredientsFilter = document.getElementById("ingredients__filter");
 // let TagDiv = document.createElement("div");
 // let TagText = document.createElement("p");
 // let TagIcon = document.createElement("i")
+var ingredientResult = false;
+var applianceResult = false;
+var ustensilResult = false;
+
 
 const FilterAppliances = document.getElementById("filterAppliances");
 const ApplianceChevronDown = document.getElementById("chevronAppliance-down");
@@ -24,8 +28,7 @@ const UstensilChevronUp = document.getElementById("chevronUstensil-up");
 const DivUstensil = document.getElementById("UstensilsArray");
 const InputustensilsFilter = document.getElementById("ustensils__filter");
 
-//  const FilterAppliance = document.querySelector("li.filter2");
-//  const FilterUstensil = document.querySelector("li.filter3");
+
 
 
 //*************************  montre la Div de IngredientArray ************************* 
@@ -40,70 +43,37 @@ function DisplayIngredientArray() {
     DivIngredient.classList.remove("hidden")
     IngredientChevronDown.classList.add("hidden");
     IngredientChevronUp.classList.remove("hidden");
+    ingredientResult = false;
 
+    // for (var i = 0; i < recipesFind.length; i++) {
+    //     for (var j = 0; j < recipes.length; j++) {
+    //         let ingredients = recipes[j].ingredients
+    //     if(recipesFind.length>0) {
+    //     let IndexIngredient = document.createElement("p");
+    //     DivIngredient.appendChild(IndexIngredient);
+    //     IndexIngredient.classList.add("TextFilter");
+    //     IndexIngredient.innerText = ingredients;
+    //     FilterIngredients.classList.add("activefilter");
+    //     }
+    // }}
     for (var i = 0; i < ingredientArray.length; i++) {
         let IndexIngredient = document.createElement("p");
         DivIngredient.appendChild(IndexIngredient);
         IndexIngredient.classList.add("TextFilter");
         IndexIngredient.innerText = ingredientArray[i];
         FilterIngredients.classList.add("activefilter");
-        IndexIngredient.addEventListener("click", tagIngredientOpen);
+        IndexIngredient.addEventListener("click", tagOpen);
         IndexIngredient.addEventListener("click", DisplayRecipesByFilter);
-
-        InputIngredientsFilter.addEventListener("keyup", function () {
-            if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
-                DivIngredient.removeChild(IndexIngredient)
-            }
-        })
-    }
-}
-
-// ----- cree le tag ingredient -----
-
-function tagIngredientOpen() {
-    let TagDiv = document.createElement("div");
-    let TagText = document.createElement("p");
-    let TagIcon = document.createElement("i")
-    ResultFilter.appendChild(TagDiv);
-    TagDiv.appendChild(TagText);
-    TagDiv.appendChild(TagIcon);
-    this.classList.add("TextFilter_active");
-    TagDiv.classList.add("TagFilter", "filter1");
-    TagText.classList.add("TagText")
-    TagIcon.classList.add("far", "fa-times-circle");
-    TagText.innerText = this.textContent;
-    CloseIngredientArray()
-    // ----- referme le tag -----
-    TagIcon.addEventListener("click", function () {
-        TagDiv.remove()
-        this.classList.remove("TextFilter_active");
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);
-        }
-    })
-}
-
-// ----- affiche les recettes disponibles pour le tag -----
-function DisplayRecipesByFilter() {
-
-    for (var i = 0; i < recipesFind.length; i++) {
-        for (var j = 0; j < recipes.length; j++) {
-            let recipesName = recipes[j].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            let ingredients = recipes[j].ingredients
-            for (var k = 0; k < ingredients.length; k++) {
-                let ingredient = ingredients[k].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (recipesFind[i] == recipesName) {
-                    if (ingredient.includes(this.textContent)) {
-                        elementArrayFilter.push(recipesName);
-                        console.log("liste des éléments filtrés");
-                        console.log(elementArrayFilter);
-                        RecipesToFind(elementArrayFilter);
-                    }
+            InputIngredientsFilter.addEventListener("keyup", function () {
+                if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
+                DivIngredient.removeChild(IndexIngredient);
                 }
-            }
-        }
+            })
     }
+
+    return ingredientResult = true;
 }
+
 // ----- cache les Div de IngredientArray ----- 
 
 IngredientChevronUp.addEventListener("click", CloseIngredientArray)
@@ -129,6 +99,7 @@ function DisplayApplianceArray() {
     DivAppliance.classList.remove("hidden")
     ApplianceChevronDown.classList.add("hidden");
     ApplianceChevronUp.classList.remove("hidden");
+    applianceResult = false;
 
     for (var i = 0; i < applianceArray.length; i++) {
         let IndexAppliance = document.createElement("p");
@@ -136,7 +107,7 @@ function DisplayApplianceArray() {
         IndexAppliance.classList.add("TextFilter");
         IndexAppliance.innerText = applianceArray[i];
         FilterAppliances.classList.add("activefilter");
-        IndexAppliance.addEventListener("click", tagAppliancesOpen);
+        IndexAppliance.addEventListener("click", tagOpen);
         IndexAppliance.addEventListener("click", DisplayRecipesByFilter);
         InputAppliancesFilter.addEventListener("keyup", function () {
             if (!IndexAppliance.textContent.includes(InputAppliancesFilter.value)) {
@@ -144,32 +115,9 @@ function DisplayApplianceArray() {
             }
         })
     }
+    return applianceResult = true;
 }
 
-// ----- cree le tag appliances -----
-
-function tagAppliancesOpen() {
-    let TagDiv = document.createElement("div");
-    let TagText = document.createElement("p");
-    let TagIcon = document.createElement("i")
-    ResultFilter.appendChild(TagDiv);
-    TagDiv.appendChild(TagText);
-    TagDiv.appendChild(TagIcon);
-    this.classList.add("TextFilter_active");
-    TagDiv.classList.add("TagFilter", "filter2");
-    TagText.classList.add("TagText")
-    TagIcon.classList.add("far", "fa-times-circle");
-    TagText.innerText = this.textContent;
-    CloseAppliancesArray()
-    // ----- referme le tag -----
-    TagIcon.addEventListener("click", function () {
-        TagDiv.remove()
-        this.classList.remove("TextFilter_active");
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);
-        }
-    })
-}
 //----- cache les Div de ApplianceArray -----
 
 ApplianceChevronUp.addEventListener("click", CloseAppliancesArray);
@@ -184,15 +132,16 @@ function CloseAppliancesArray() {
     }
 }
 
-
 //----- montre les Div de UstensilArray -----
 
 UstensilChevronDown.addEventListener("click", DisplayUstensilArray)
+// InputustensilsFilter.addEventListener("input", DisplayApplianceArray)
 function DisplayUstensilArray() {
 
     DivUstensil.classList.remove("hidden")
     UstensilChevronDown.classList.add("hidden");
     UstensilChevronUp.classList.remove("hidden");
+    ustensilResult = false;
 
     for (var i = 0; i < ustensilArray.length; i++) {
         let IndexUstensil = document.createElement("p");
@@ -200,7 +149,7 @@ function DisplayUstensilArray() {
         IndexUstensil.classList.add("TextFilter");
         IndexUstensil.innerText = ustensilArray[i];
         FilterUstensils.classList.add("activefilter");
-        IndexUstensil.addEventListener("click", tagUstensilsOpen);
+        IndexUstensil.addEventListener("click", tagOpen);
         IndexUstensil.addEventListener("click", DisplayRecipesByFilter);
         InputustensilsFilter.addEventListener("keyup", function () {
             if (!IndexUstensil.textContent.includes(InputustensilsFilter.value)) {
@@ -208,31 +157,7 @@ function DisplayUstensilArray() {
             }
         })
     }
-}
-
-// ----- cree le tag ustensils -----
-
-function tagUstensilsOpen() {
-    let TagDiv = document.createElement("div");
-    let TagText = document.createElement("p");
-    let TagIcon = document.createElement("i")
-    ResultFilter.appendChild(TagDiv);
-    TagDiv.appendChild(TagText);
-    TagDiv.appendChild(TagIcon);
-    this.classList.add("TextFilter_active");
-    TagDiv.classList.add("TagFilter", "filter3");
-    TagText.classList.add("TagText")
-    TagIcon.classList.add("far", "fa-times-circle");
-    TagText.innerText = this.textContent;
-    CloseUstensilsArray()
-    // ----- referme le tag -----
-    TagIcon.addEventListener("click", function () {
-        TagDiv.remove()
-        this.classList.remove("TextFilter_active");
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);
-        }
-    })
+    return ustensilResult = true;
 }
 
 //----- cache les Div de UstensilArray -----
@@ -249,4 +174,66 @@ function CloseUstensilsArray() {
     }
 }
 
+// *********************** cree le tag ingredient ***********************
 
+function tagOpen() {
+    let TagDiv = document.createElement("div");
+    let TagText = document.createElement("p");
+    let TagIcon = document.createElement("i")
+    ResultFilter.appendChild(TagDiv);
+    TagDiv.appendChild(TagText);
+    TagDiv.appendChild(TagIcon);
+    this.classList.add("TextFilter_active");
+    if(ingredientResult == true){
+        TagDiv.classList.add("TagFilter", "filter1");
+        ingredientResult = false;
+    }else if(applianceResult == true){
+        TagDiv.classList.add("TagFilter", "filter2");
+        applianceResult = false;
+    }else if(ustensilResult == true){
+        TagDiv.classList.add("TagFilter", "filter3"); 
+        ustensilResult = false;
+    }
+    TagText.classList.add("TagText")
+    TagIcon.classList.add("far", "fa-times-circle");
+    TagText.innerText = this.textContent;
+    CloseIngredientArray();
+    CloseAppliancesArray();
+    CloseUstensilsArray();
+    // ----- referme le tag -----
+    TagIcon.addEventListener("click", function () {
+        TagDiv.remove()
+        this.classList.remove("TextFilter_active");
+        while (mainGrid.firstChild) {
+            mainGrid.removeChild(mainGrid.firstChild);
+        }
+    })
+}
+
+// *********************** affiche les recettes disponibles pour le tag ***********************
+function DisplayRecipesByFilter() {
+
+    for (var i = 0; i < recipesFind.length; i++) {
+        for (var j = 0; j < recipes.length; j++) {
+            let recipesName = recipes[j].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let ingredients = recipes[j].ingredients
+            for (var k = 0; k < ingredients.length; k++) {
+                let ingredient = ingredients[k].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if (recipesFind[i] == recipesName) {
+                    if (ingredient.includes(this.textContent)) {
+                        elementArrayFilter.push(recipesName);
+                        console.log("liste des éléments filtrés");
+                        console.log(elementArrayFilter);
+                        RecipesToFind(elementArrayFilter);
+                    }
+    //----- affiche le message d'erreur -----
+                    else { 
+                        while (mainGrid.firstChild) {
+                            mainGrid.removeChild(mainGrid.firstChild);}
+                            document.getElementById("error-message").classList.remove("hidden")
+                    }
+                }
+            }
+        }
+    }
+}

@@ -18,7 +18,8 @@
     <h1 id="title">Les petits plats</h1>
   </header>
   <section id="sectionsearch">
-    <input id="searchbar__text" type="search" placeholder="Rechercher un ingrédient,appareils, ustensiles ou une recette">
+    <input id="searchbar__text" type="search"
+      placeholder="Rechercher un ingrédient,appareils, ustensiles ou une recette">
     <i class="fas fa-search"></i>
   </section>
 
@@ -38,59 +39,92 @@
       </div> -->
     </div>
     <ul id="filterbox">
-      <li id= "filterIngredients" class="Filter filter1">
-        <input id= "ingredients__filter" class="filter__text" type="text" placeholder="Ingredients">
-        <span id= "chevronIngredient-down"><i class="fas fa-chevron-down"></i></span>
-        <span id= "chevronIngredient-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
+      <li id="filterIngredients" class="Filter filter1">
+        <input id="ingredients__filter" class="filter__text" type="text" placeholder="Ingredients">
+        <span id="chevronIngredient-down"><i class="fas fa-chevron-down"></i></span>
+        <span id="chevronIngredient-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
         <span id="IngredientsArray" class="hidden"></span>
       </li>
-      <li id= "filterAppliances" class="Filter filter2">
-        <input id="appliances__filter"  class="filter__text" type="text" placeholder="Appareils">
-        <span id= "chevronAppliance-down"><i class="fas fa-chevron-down"></i></span>
-        <span id= "chevronAppliance-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
+      <li id="filterAppliances" class="Filter filter2">
+        <input id="appliances__filter" class="filter__text" type="text" placeholder="Appareils">
+        <span id="chevronAppliance-down"><i class="fas fa-chevron-down"></i></span>
+        <span id="chevronAppliance-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
         <span id="AppliancesArray" class="hidden"></span>
       </li>
-      <li id= "filterUstensils" class="Filter filter3">
-        <input id="ustensils__filter"  class="filter__text" type="text" placeholder="Ustensiles">
-        <span id= "chevronUstensil-down"><i class="fas fa-chevron-down"></i></span>
-        <span id= "chevronUstensil-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
+      <li id="filterUstensils" class="Filter filter3">
+        <input id="ustensils__filter" class="filter__text" type="text" placeholder="Ustensiles">
+        <span id="chevronUstensil-down"><i class="fas fa-chevron-down"></i></span>
+        <span id="chevronUstensil-up" class="hidden"><i class="fas fa-chevron-up"></i></span>
         <span id="UstensilsArray" class="hidden"></span>
       </li>
     </ul>
   </nav>
   <main id="main">
+    <div id="error-message" class="hidden">
+      <p>Désolé, aucun résultat ne correspond a votre recherche</p>
+    </div>
     <div id="main_grid">
-      <!-- <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>
-      <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>
-      <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>
-      <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>
-      <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>
-      <a href="#" class="cooking_recipe">
-        <div class="img_food a">photo</div>
-        <div class="ingredients b">Ingredients</div>
-        <div class="step c"><i class="far fa-clock"></i>Etapes</div>
-      </a>  -->
-      
+        <!-- <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a>
+        <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a>
+        <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a>
+        <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a>
+        <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a>
+        <a href="#" class="cooking_recipe">
+          <div class="img_food a"></div>
+          <div class="recipe_Name d">
+            <h2 class="recipe_title"></h2>
+            <i class=" far fa-clock"></i>
+            <p class="cardTime"></p>
+          </div>
+          <div class="ingredients b"></div>
+          <div class="step c"></div>
+        </a> -->
+
     </div>
 
 
@@ -100,4 +134,5 @@
 <script src="js/recipes.js"></script>
 <script src="js/SearchBar.js"></script>
 <script src="js/Filter.js"></script>
+
 </html>

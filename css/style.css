@@ -264,7 +264,10 @@ body{
     text-overflow: clip;
     height: 90%;
 }
+.card_ingredients {
+    padding-left: 10px;
 
+}
 .card_ingredientList{
     margin: 0;
     padding: 0;

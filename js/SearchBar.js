@@ -1,5 +1,6 @@
 
 const searchBar = document.getElementById("searchbar__text");
+const searchIcon = document.getElementsByClassName(".fa-search")
 const mainGrid = document.getElementById("main_grid");
 
 let ingredientArrayFilter = [];
@@ -49,9 +50,9 @@ function createElementArray (){
     //**************** lance la recherche par la barre de recherche ****************
 
 
-searchBar.addEventListener("change", ElementArrayFilter);
+searchBar.addEventListener("input", ElementArrayFilter);
     
-    //**************** trie le tableau ingredients suivant l'input de la barre de recherche ****************
+    //**************** trie le tableau element suivant l'input de la barre de recherche ****************
 function ElementArrayFilter(){
     let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let inputSearchBarSplit = inputSearchBar.split(" ");
@@ -59,6 +60,8 @@ function ElementArrayFilter(){
     ingredientArrayFilter = [];
     applianceArrayFilter = [];
     ustensilArrayFilter = [];
+
+    if(inputSearchBar.length >2 ){
         for (var i = 0 ; i < ingredientArray.length; i++){
             if(ingredientArray[i].includes(inputSearchBarSplit)){
                 elementArrayFilter.push(ingredientArray[i]);
@@ -66,7 +69,7 @@ function ElementArrayFilter(){
                 if(ingredientArray[i].includes (inputSearchBar)){
                     elementArrayFilter.push(ingredientArray[i]);
                 }
-            }       
+            }   
         }     
         for (var i = 0 ; i < applianceArray.length; i++){
             if(applianceArray[i].includes(inputSearchBarSplit)){
@@ -88,16 +91,16 @@ function ElementArrayFilter(){
         }
         for(var i = 0 ; i <recipes.length; i++){
             let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if(recipeName.includes(inputSearchBarSplit)){
+            if(recipeName.includes(inputSearchBar)){
                 elementArrayFilter.push(recipeName);
             }
         }
     console.log("liste des éléments filtrés");
     console.log(elementArrayFilter);
     RecipesToFind(elementArrayFilter);     
+    }   
 }
-
-    //**************** créer un tableau de recette filtrées par ingrédient ****************
+    //**************** recherche les recettes à partir des ingredients, appareils et ustensiles ****************
     var recipesFind = [];
     function RecipesToFind() {
     recipesFind = [];
@@ -114,7 +117,7 @@ function ElementArrayFilter(){
                     }
                 }
             }
-            if(recipeName .includes (elementArrayFilter[i])){
+            if(recipeName.includes(elementArrayFilter[i])){
                 if (!recipesFind.includes(recipeName)){
                 recipesFind.push(recipeName);
                 }
@@ -146,9 +149,8 @@ function ElementArrayFilter(){
     function CreateCard(){
 
     //--- reinitialise l affichage ---
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);}
-
+    while (mainGrid.firstChild) {
+        mainGrid.removeChild(mainGrid.firstChild);}
             
     for(var k = 0 ; k < recipesFind.length ; k++){
         for(var i =0 ; i < recipes.length ; i++){
@@ -157,14 +159,13 @@ function ElementArrayFilter(){
             var recipeStep = recipes[i].description
             var recipesIngredients = recipes[i].ingredients;
 
-
-        if(recipesFind[k] === recipeName){
+            if(recipesFind[k] === recipeName){
         //  var card =  
         // `<div id="main_grid">
         //     <a href="#" class="cooking_recipe">
         //     <div class="img_food a"></div>
         //     <div class="recipe_Name d">
-        //         <h2 class="recipe_title></h2>
+        //         <h2 class="recipe_title"></h2>
         //         <i class="far fa-clock"></i>
         //         <p class="cardTime"></p>
         //     </div>
@@ -180,7 +181,7 @@ function ElementArrayFilter(){
         //  main.innerHTML = card
          
 
-            let recipeCard = document.createElement("div");
+            let recipeCard = document.createElement("a");
             recipeCard.classList.add("cooking_recipe");
             mainGrid.appendChild(recipeCard);
     
@@ -215,48 +216,25 @@ function ElementArrayFilter(){
             cardStepText.innerText = recipeStep;
 
 
-            let cardingredient =  document.createElement("div")
-            cardingredient.classList.add("card_ingredients","b")
+            let cardingredient =  document.createElement("div");
+            cardingredient.classList.add("card_ingredients","b");
             recipeCard.appendChild(cardingredient);
-            for(var j =0 ; j < recipesIngredients.length ;j++){
-                let cardIngredientList = document.createElement("p");
-                cardIngredientList.classList.add("card_ingredientList")
-                cardingredient.appendChild(cardIngredientList)
-                cardIngredientList.innerText = recipesIngredients[j].ingredient +" : "+ recipesIngredients[j].quantity + " " + recipesIngredients[j].unit ;
+                for(var j =0 ; j < recipesIngredients.length ;j++){
+                    let cardIngredientList = document.createElement("p");
+                    cardIngredientList.classList.add("card_ingredientList");
+                    cardingredient.appendChild(cardIngredientList);
+                    if(recipesIngredients[j].unit != null ){
+                    cardIngredientList.innerText = recipesIngredients[j].ingredient +" : "+ recipesIngredients[j].quantity + " " + recipesIngredients[j].unit ;
+                    } else {
+                        cardIngredientList.innerText = recipesIngredients[j].ingredient +" : "+ recipesIngredients[j].quantity + " "
+                    }
+                }
             }
         }
-
     }
-
 }
 
-    }
 
-    
-
-
-
-        //     for(var i =0; i<recipes.length;i++){
-        //         let recipeName = recipes[i].name;
-        //         let recipeTime = recipes[i].time;
-        //         let recipeStep = recipes[i].description
-        //         let recipesIngredients = recipes[i].ingredients;
-        
-       
-
-     
-
-        //     for(var j = 0 ; j < recipesIngredients.length; j++){
-        //         let ingredient = recipesIngredients[j].ingredient
-        //         let ingredientQuantity = recipesIngredients[j].quantity
-        //         let ingredientUnit =  recipesIngredients[j].unit
-         
-
-        //     }
-        // }
-
-    //     }
-    // }
 
     
     
