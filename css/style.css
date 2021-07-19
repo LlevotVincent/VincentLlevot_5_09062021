@@ -337,6 +337,11 @@ body{
     color: grey;
 }
 
+#error-message{
+    font-family: 'Lato', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+}
 .hidden{
     visibility: hidden;
 }
