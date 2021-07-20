@@ -49,7 +49,7 @@ function DisplayIngredientArray() {
     ingredientChevronUp.classList.remove("hidden");
     ingredientResult = false;
 
-if(recipesFind.length == 0){
+// if(recipesFind.length == 0){
     for (var i = 0; i < ingredientArray.length; i++) {
         let indexIngredient = document.createElement("p");
         divIngredient.appendChild(indexIngredient);
@@ -67,7 +67,7 @@ if(recipesFind.length == 0){
             }
         })
     
-    }
+    // }
 } 
     return ingredientResult = true; //utilisé pour changer la couleur du tag
 }
@@ -121,8 +121,8 @@ function DisplayApplianceArray() {
                 divAppliance.appendChild(indexAppliance)
             }
         })
-    
     }
+    return applianceResult = true; //utilisé pour changer la couleur du tag
 } 
 
 //----- cache les Div de ApplianceArray -----
@@ -173,7 +173,7 @@ function DisplayUstensilArray() {
             }
         })
     }
-    return ustensilResult = true;
+    return ustensilResult = true; //utilisé pour changer la couleur du tag
 }
 
 //----- cache les Div de UstensilArray -----
@@ -207,13 +207,13 @@ function tagOpen() {
     tagDiv.appendChild(tagIcon);
     this.classList.add("TextFilter_active");
     if(ingredientResult == true){
-        tagDiv.classList.add("TagFilter", "filter1");
+        tagDiv.classList.add("tagFilter", "filter1");
         ingredientResult = false;
     }else if(applianceResult == true){
-        tagDiv.classList.add("TagFilter", "filter2");
+        tagDiv.classList.add("tagFilter", "filter2");
         applianceResult = false;
     }else if(ustensilResult == true){
-        tagDiv.classList.add("TagFilter", "filter3"); 
+        tagDiv.classList.add("tagFilter", "filter3"); 
         ustensilResult = false;
     }
     tagText.classList.add("tagText")

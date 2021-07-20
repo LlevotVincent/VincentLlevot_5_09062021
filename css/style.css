@@ -59,7 +59,7 @@ body{
     display: flex;
     padding: 0;}
 
-.tagFilter {
+/* .tagFilter {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,7 +67,8 @@ body{
     max-width: 170px;
     max-height: 69px;
     margin-right: 20px;
-    border-radius: 5px;}
+    border-radius: 5px;
+  } */
 
 
 #filterbox {
@@ -114,7 +115,7 @@ body{
     margin-left: 15px;
 }
 
-.TagFilter{
+.tagFilter{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,7 +130,7 @@ body{
     color: white;
 }
 
-.TagText {
+.tagText {
     width: 60%;
     font-family: 'Lato', sans-serif;
     font-weight: normal;
