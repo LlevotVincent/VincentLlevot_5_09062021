@@ -55,11 +55,11 @@ body{
         /*Barre de Filtre*/
 
 
-#resultfilterbox{
+#tagFilterResult{
     display: flex;
     padding: 0;}
 
-.result {
+.tagFilter {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +68,6 @@ body{
     max-height: 69px;
     margin-right: 20px;
     border-radius: 5px;}
-
 
 
 #filterbox {
@@ -157,6 +156,7 @@ body{
     position: absolute;
     right: 18px;
     color: white;
+
 }
 
 
