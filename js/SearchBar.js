@@ -101,7 +101,7 @@ function ElementArrayFilter(){
     console.log(elementArrayFilter);
     RecipesToFind(elementArrayFilter);     
     }   
-    if(elementArrayFilter.length ==0 && inputSearchBar.length >2 ) {
+    if(elementArrayFilter.length == 0 && inputSearchBar.length >2 ) {
         document.getElementById("error-message").classList.remove("hidden")
     } 
 }

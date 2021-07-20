@@ -46,7 +46,7 @@ function DisplayIngredientArray() {
     IngredientChevronUp.classList.remove("hidden");
     ingredientResult = false;
 
-
+if(recipesFind.length == 0){
     for (var i = 0; i < ingredientArray.length; i++) {
         let IndexIngredient = document.createElement("p");
         DivIngredient.appendChild(IndexIngredient);
@@ -55,13 +55,42 @@ function DisplayIngredientArray() {
         FilterIngredients.classList.add("activefilter");
         IndexIngredient.addEventListener("click", tagOpen);
         IndexIngredient.addEventListener("click", DisplayRecipesByFilter);
-        InputIngredientsFilter.addEventListener("keydown", function () {
+        InputIngredientsFilter.addEventListener("input", function () {
             if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
-                // DivIngredient.removeChild(IndexIngredient)
-                IndexIngredient.classList.add("hidden")
+                DivIngredient.removeChild(IndexIngredient)
+            }
+            if (IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
+                DivIngredient.appendChild(IndexIngredient)
             }
         })
+    
     }
+} 
+// else {
+//     for (var i = 0 ; i <recipesFind.length; i++){ 
+//         for(var k = 0 ; k <recipes.length; k++){
+//         let recipeName = recipes[k].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+//         let ingredients = recipes[k].ingredients;
+//         if(recipesFind[i] == recipeName){
+//             for (var i = 0; i < ingredientArray.length; i++) {
+//                 ingredientArray[i].split(ingredients)
+
+//             let IndexIngredient = document.createElement("p");
+//             DivIngredient.appendChild(IndexIngredient);
+//             IndexIngredient.classList.add("TextFilter");
+//             IndexIngredient.innerText = ingredientArray[i];
+//             FilterIngredients.classList.add("activefilter");
+//             IndexIngredient.addEventListener("click", tagOpen);
+//             IndexIngredient.addEventListener("click", DisplayRecipesByFilter);
+//             InputIngredientsFilter.addEventListener("keydown", function () {
+//                 if (!IndexIngredient.textContent.includes(InputIngredientsFilter.value)) {
+//                     // DivIngredient.removeChild(IndexIngredient)
+//                     IndexIngredient.classList.add("hidden")
+//                 }
+//             })
+//         }
+//     }
+// }
     return ingredientResult = true;
 }
 
