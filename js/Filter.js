@@ -13,7 +13,7 @@ const inputIngredientsFilter = document.getElementById("ingredients__filter");
 var ingredientResult = false;
 var applianceResult = false;
 var ustensilResult = false;
-var elementArrayFilter = []
+
 
 const filterAppliances = document.getElementById("filterAppliances");
 const applianceChevronDown = document.getElementById("chevronAppliance-down");
@@ -55,7 +55,7 @@ function DisplayIngredientArray() {
         indexIngredient.innerText = ingredientArray[i];
         filterIngredients.classList.add("activefilter");
         indexIngredient.addEventListener("click", tagOpen);
-        indexIngredient.addEventListener("click", DisplayRecipesByFilter);
+        indexIngredient.addEventListener("click", RecipesToFind);
         inputIngredientsFilter.addEventListener("input", function () {
             let inputIngredient = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexIngredient.textContent.includes(inputIngredient)) {
@@ -235,40 +235,3 @@ function tagOpen() {
 }
 
 
-//***************************************************************************
-//***************************************************************************
-//*************  affiche les recettes disponibles pour le tag ***************
-//***************************************************************************
-//***************************************************************************
-
-function DisplayRecipesByFilter() {
-
-    elementArrayFilter = []
-    for (var j = 0; j < recipes.length; j++) {
-        let recipesName = recipes[j].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        let ingredients = recipes[j].ingredients
-        let ustensils = recipes[j].ustensils;
-
-        for (var k = 0; k < ingredients.length; k++) {
-            let ingredient = ingredients[k].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (ingredient.includes(this.textContent)) {
-                elementArrayFilter.push(recipesName);
-            }
-        }
-        let appliances = recipes[j].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        if (appliances.includes(this.textContent)) {
-            elementArrayFilter.push(recipesName);
-        }
-        for (var l = 0; l < ustensils.length; l++) {
-            let ustensil = ustensils[l].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            if (ustensil.includes(this.textContent)) {
-                elementArrayFilter.push(recipesName);
-            }
-        }
-    }
-    console.log("liste des éléments filtrés");
-    console.log(elementArrayFilter);
-    RecipesToFind(elementArrayFilter);
-}
-
-    
