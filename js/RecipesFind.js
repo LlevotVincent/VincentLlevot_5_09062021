@@ -1,8 +1,6 @@
 
 
-var elementArrayFilter = []
-var recipeFindSearchBar = []
-var recipesFind = [];
+
 
 
 //***************************************************************************
@@ -52,7 +50,6 @@ function RecipesToFind() {
         }
 
         recipesFind = [].concat(recipeFindSearchBar)
-        
     } else {
         for (var j = 0; j < recipes.length; j++) {
             let recipesName = recipes[j].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");

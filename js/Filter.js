@@ -41,12 +41,12 @@ inputIngredientsFilter.addEventListener("click", DisplayIngredientArray)
 // ----- Affiche la Div de ingredient Array by filter -----
 
 function DisplayIngredientArray() {
-
+    inputIngredientsFilter.removeEventListener("click", DisplayIngredientArray)
     divIngredient.classList.remove("hidden")
     ingredientChevronDown.classList.add("hidden");
     ingredientChevronUp.classList.remove("hidden");
     ingredientResult = false;
-
+    createElementArray()
 
     for (var i = 0; i < ingredientArray.length; i++) {
         let indexIngredient = document.createElement("p");
@@ -58,9 +58,8 @@ function DisplayIngredientArray() {
         indexIngredient.addEventListener("click", RecipesToFind);
         inputIngredientsFilter.addEventListener("input", function () {
             let inputIngredient = inputIngredientsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            let textIngredient = document.querySelector("p.TextFilter")
             if (!indexIngredient.textContent.includes(inputIngredient)) {
-                divIngredient.removeChild(indexIngredient)
+                indexIngredient.remove()
             }
             if (indexIngredient.textContent.includes(inputIngredient)) {
                 divIngredient.appendChild(indexIngredient)
@@ -96,7 +95,7 @@ inputApplianceFilter.addEventListener("click", DisplayApplianceArray)
 //----- montre les Div de ApplianceArray -----
 
 function DisplayApplianceArray() {
-
+    inputApplianceFilter.removeEventListener("click", DisplayApplianceArray)
     divAppliance.classList.remove("hidden")
     applianceChevronDown.classList.add("hidden");
     applianceChevronUp.classList.remove("hidden");
@@ -114,7 +113,7 @@ function DisplayApplianceArray() {
             let inputAppliance = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             if (!indexAppliance.textContent.includes(inputAppliance)) {
-                divAppliance.removeChild(indexAppliance)
+                indexAppliance.remove()
             }
             if (indexAppliance.textContent.includes(inputAppliance)) {
                 divAppliance.appendChild(indexAppliance)
@@ -150,7 +149,7 @@ inputustensilsFilter.addEventListener("click", DisplayUstensilArray)
 //----- montre les Div de UstensilArray -----
 
 function DisplayUstensilArray() {
-
+    inputustensilsFilter.removeEventListener("click", DisplayUstensilArray)
     divUstensil.classList.remove("hidden")
     ustensilChevronDown.classList.add("hidden");
     ustensilChevronUp.classList.remove("hidden");
@@ -167,7 +166,7 @@ function DisplayUstensilArray() {
         inputustensilsFilter.addEventListener("keyup", function () {
             let inputUstensils = inputustensilsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexUstensil.textContent.includes(inputUstensils)) {
-                divUstensil.removeChild(indexUstensil)
+                indexUstensil.remove()
             }
             if (indexUstensil.textContent.includes(inputUstensils)) {
                 divUstensil.appendChild(indexUstensil)

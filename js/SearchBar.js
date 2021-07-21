@@ -3,10 +3,14 @@ const searchBar = document.getElementById("searchbar__text");
 const searchIcon = document.getElementsByClassName(".fa-search")
 const mainGrid = document.getElementById("main_grid");
 
-var elementArraySearchBar = []
+var elementArraySearchBar = [];
 let ingredientArrayFilter = [];
 let applianceArrayFilter = [];
 let ustensilArrayFilter = [];
+
+var elementArrayFilter = [];
+var recipeFindSearchBar = [];
+var recipesFind = [];
 
 //***************************************************************************
 //***************************************************************************
@@ -17,10 +21,42 @@ let ustensilArrayFilter = [];
     let ingredientArray = [];
     let applianceArray = [];
     let ustensilArray = [];
-    createElementArray();
+    // createElementArray();
     
 function createElementArray (){
-    
+    ingredientArray = []
+    applianceArray = []
+    ustensilArray = []
+if(recipesFind.length>0){
+    for (var l = 0; l < recipesFind.length; l++) {   
+    for (var i = 0; i < recipes.length; i++) {
+        let ingredients = recipes[i].ingredients;
+        let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        if (recipesFind[l] == recipeName) {
+        for (var j = 0; j < ingredients.length; j++){
+            let ustensils = recipes[i].ustensils;
+            for (var k = 0; k < ustensils.length; k++){
+                let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if (!ingredientArray.includes(listOfIngredient)){
+                ingredientArray.push(listOfIngredient);
+                ingredientArray.sort();
+
+                }
+                let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if (!applianceArray.includes(listOfAppliance)){
+                applianceArray.push(listOfAppliance);
+                applianceArray.sort();
+                }
+                let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if (!ustensilArray.includes(listOfUstensils)){
+                ustensilArray.push(listOfUstensils);
+                ustensilArray.sort();
+                }
+            }
+        }}
+    }}
+} else {
+
     for (var i = 0; i < recipes.length; i++) {
         let ingredients = recipes[i].ingredients;
         for (var j = 0; j < ingredients.length; j++){
@@ -45,6 +81,7 @@ function createElementArray (){
             }
         }
     }
+}
     // console.log("liste des ingredients")
     // console.log(ingredientArray);
     // console.log("liste des appareils")
@@ -66,7 +103,7 @@ searchBar.addEventListener("input", elementSearchBar);
 function elementSearchBar(){
     let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let inputSearchBarSplit = inputSearchBar.split(" ");
-    elementArraySearchBar = []
+    elementArraySearchBar = [];
     ingredientArrayFilter = [];
     applianceArrayFilter = [];
     ustensilArrayFilter = [];
