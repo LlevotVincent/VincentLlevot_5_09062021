@@ -57,7 +57,8 @@ function DisplayIngredientArray() {
         indexIngredient.addEventListener("click", tagOpen);
         indexIngredient.addEventListener("click", RecipesToFind);
         inputIngredientsFilter.addEventListener("input", function () {
-            let inputIngredient = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let inputIngredient = inputIngredientsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let textIngredient = document.querySelector("p.TextFilter")
             if (!indexIngredient.textContent.includes(inputIngredient)) {
                 divIngredient.removeChild(indexIngredient)
             }
@@ -108,7 +109,7 @@ function DisplayApplianceArray() {
         indexAppliance.innerText = applianceArray[i];
         filterAppliances.classList.add("activefilter");
         indexAppliance.addEventListener("click", tagOpen);
-        indexAppliance.addEventListener("click", DisplayRecipesByFilter);
+        indexAppliance.addEventListener("click", RecipesToFind);
         inputApplianceFilter.addEventListener("input", function () {
             let inputAppliance = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -162,7 +163,7 @@ function DisplayUstensilArray() {
         indexUstensil.innerText = ustensilArray[i];
         filterUstensils.classList.add("activefilter");
         indexUstensil.addEventListener("click", tagOpen);
-        indexUstensil.addEventListener("click", DisplayRecipesByFilter);
+        indexUstensil.addEventListener("click", RecipesToFind);
         inputustensilsFilter.addEventListener("keyup", function () {
             let inputUstensils = inputustensilsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexUstensil.textContent.includes(inputUstensils)) {
