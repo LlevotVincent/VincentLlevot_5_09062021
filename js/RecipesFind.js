@@ -1,8 +1,3 @@
-
-
-
-
-
 //***************************************************************************
 //***************************************************************************
 //*******************  affiche les recettes disponibles  ********************
@@ -22,7 +17,7 @@ function RecipesToFind() {
                     let ingredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     if (ingredient.includes(elementArraySearchBar[i])) {
                         if (!recipeFindSearchBar.includes(recipeName)) {
-                            recipeFindSearchBar.push(recipeName);
+                                recipeFindSearchBar.push(recipeName);
                         }
                     }
                 }

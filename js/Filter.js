@@ -1,36 +1,5 @@
 //***************************************************************************
 //***************************************************************************
-//****************** importe les tableaux pour les filtres ****************** 
-//***************************************************************************
-//***************************************************************************
-
-const filterIngredients = document.getElementById("filterIngredients");
-const ingredientChevronDown = document.getElementById("chevronIngredient-down");
-const ingredientChevronUp = document.getElementById("chevronIngredient-up");
-const divIngredient = document.getElementById("IngredientsArray");
-const inputIngredientsFilter = document.getElementById("ingredients__filter");
-
-var ingredientResult = false;
-var applianceResult = false;
-var ustensilResult = false;
-
-
-const filterAppliances = document.getElementById("filterAppliances");
-const applianceChevronDown = document.getElementById("chevronAppliance-down");
-const applianceChevronUp = document.getElementById("chevronAppliance-up");
-const divAppliance = document.getElementById("AppliancesArray");
-const inputApplianceFilter = document.getElementById("appliances__filter");
-
-const filterUstensils = document.getElementById("filterUstensils");
-const ustensilChevronDown = document.getElementById("chevronUstensil-down");
-const ustensilChevronUp = document.getElementById("chevronUstensil-up");
-const divUstensil = document.getElementById("UstensilsArray");
-const inputustensilsFilter = document.getElementById("ustensils__filter");
-
-const resultFilter = document.getElementById("tagFilterResult");
-
-//***************************************************************************
-//***************************************************************************
 //*************************  filtre des Ingredients ************************* 
 //***************************************************************************
 //***************************************************************************

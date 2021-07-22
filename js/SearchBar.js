@@ -1,27 +1,9 @@
-
-const searchBar = document.getElementById("searchbar__text");
-const searchIcon = document.getElementsByClassName(".fa-search")
-const mainGrid = document.getElementById("main_grid");
-
-var elementArraySearchBar = [];
-let ingredientArrayFilter = [];
-let applianceArrayFilter = [];
-let ustensilArrayFilter = [];
-
-var elementArrayFilter = [];
-var recipeFindSearchBar = [];
-var recipesFind = [];
-
 //***************************************************************************
 //***************************************************************************
 //**********  crée les tableaux ingredients appareils et ustensiles *********
 //***************************************************************************
 //***************************************************************************
 
-    let ingredientArray = [];
-    let applianceArray = [];
-    let ustensilArray = [];
-    // createElementArray();
     
 function createElementArray (){
     ingredientArray = []
@@ -82,12 +64,12 @@ if(recipesFind.length>0){
         }
     }
 }
-    // console.log("liste des ingredients")
-    // console.log(ingredientArray);
-    // console.log("liste des appareils")
-    // console.log(applianceArray);
-    // console.log("liste des ustensiles")
-    // console.log(ustensilArray);
+    console.log("liste des ingredients")
+    console.log(ingredientArray);
+    console.log("liste des appareils")
+    console.log(applianceArray);
+    console.log("liste des ustensiles")
+    console.log(ustensilArray);
 }
     
 //***************************************************************************
@@ -101,13 +83,14 @@ searchBar.addEventListener("input", elementSearchBar);
     
     //**************** trie le tableau element suivant l'input de la barre de recherche ****************
 function elementSearchBar(){
+
     let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     let inputSearchBarSplit = inputSearchBar.split(" ");
     elementArraySearchBar = [];
     ingredientArrayFilter = [];
     applianceArrayFilter = [];
     ustensilArrayFilter = [];
-
+    createElementArray ()
     if(inputSearchBar.length >2 ){
         document.getElementById("error-message").classList.add("hidden")
         for (var i = 0 ; i < ingredientArray.length; i++){
@@ -143,7 +126,6 @@ function elementSearchBar(){
                 elementArraySearchBar.push(recipeName);
             } 
         }
-
     console.log("liste des éléments filtrés");
     console.log(elementArraySearchBar);
     RecipesToFind(elementArraySearchBar);     
