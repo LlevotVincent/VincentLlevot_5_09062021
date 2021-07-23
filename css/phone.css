@@ -1,0 +1,54 @@
+@media screen and (max-width: 768px) {
+
+
+
+
+ #main_grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 50px;
+    margin-top: 25px;
+}
+
+#filterbox {
+    display: flex;
+    justify-content : space-between;
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.Filter {
+    display: flex;
+
+    width: 170px;
+    height: 69px;
+    margin-right: 0;
+    border-radius: 5px;
+}
+
+#IngredientsArray{
+    width: 300%;
+    grid-template-columns: repeat(3, 1fr); 
+    
+}
+
+#AppliancesArray{
+    width: 300%;
+    grid-template-columns: repeat(3, 1fr); 
+    left: -100%;
+}
+
+#UstensilsArray{
+    width: 300%;
+    grid-template-columns: repeat(3, 1fr);
+    left: -200%;
+}
+
+
+
+
+}
+
+

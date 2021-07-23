@@ -7,8 +7,6 @@
 recipesFind = [];
 function RecipesToFind() {
     recipeFindSearchBar = []
-
-
     if (recipesFind.length > 0) {
         for (var p = 0; p < recipesFind.length; p++) {
             for (var k = 0; k < recipes.length; k++) {
