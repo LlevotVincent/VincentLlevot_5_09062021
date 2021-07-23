@@ -35,6 +35,7 @@ function DisplayIngredientArray() {
             }
         })
     }
+    firstFind = true
     return ingredientResult = true; //utilisé pour changer la couleur du tag
 }
 

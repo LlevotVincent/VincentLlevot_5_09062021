@@ -4,10 +4,14 @@
 //***************************************************************************
 //***************************************************************************
 
-recipesFind = [];
+recipesFind = []
+recipeFindSearchBar = []
+
 function RecipesToFind() {
+
     recipeFindSearchBar = []
-    if (recipesFind.length > 0) {
+
+    if (firstFind == true && recipesFind.length>0 ) {
         for (var p = 0; p < recipesFind.length; p++) {
             for (var k = 0; k < recipes.length; k++) {
                 let recipeName = recipes[k].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -16,18 +20,24 @@ function RecipesToFind() {
                         for (var q = 0; q < ingredients.length; q++) {
                             let ingredient = ingredients[q].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                         if (ingredient.includes(this.textContent)) {
+                           if(!recipeFindSearchBar.includes(recipeName)){
                             recipeFindSearchBar.push(recipeName)
+                        }
                         }
                         }
                     let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                     if (appliances.includes(this.textContent)) {
+                        if(!recipeFindSearchBar.includes(recipeName)){
                         recipeFindSearchBar.push(recipeName);
+                        }
                     }
                     let ustensils = recipes[k].ustensils;
                     for (var l = 0; l < ustensils.length; l++) {
                         let ustensil = ustensils[l].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                         if (ustensil.includes(this.textContent)) {
+                            if(!recipeFindSearchBar.includes(recipeName)){
                             recipeFindSearchBar.push(recipeName);
+                            }
                         }
                     }
                 }
@@ -60,7 +70,7 @@ function RecipesToFind() {
                 let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (appliances.includes(elementArraySearchBar[i])) {
                     if (!recipeFindSearchBar.includes(recipeName)) {
-                        recipeFindSearchBar.push(recipes[k]);
+                        recipeFindSearchBar.push(recipeName);
                     }
                 }
                 let ustensils = recipes[k].ustensils;
@@ -76,6 +86,7 @@ function RecipesToFind() {
         }
 
         recipesFind = [].concat(recipeFindSearchBar)
+
 
     } else {
         for (var j = 0; j < recipes.length; j++) {

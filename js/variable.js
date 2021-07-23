@@ -33,7 +33,7 @@ const inputIngredientsFilter = document.getElementById("ingredients__filter");
 var ingredientResult = false;
 var applianceResult = false;
 var ustensilResult = false;
-
+let firstFind = false
 
 const filterAppliances = document.getElementById("filterAppliances");
 const applianceChevronDown = document.getElementById("chevronAppliance-down");
