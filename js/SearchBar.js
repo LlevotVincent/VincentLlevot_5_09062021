@@ -14,21 +14,20 @@ if(recipesFind.length>0){
     for (var i = 0; i < recipes.length; i++) {
         let ingredients = recipes[i].ingredients;
         let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        if (recipesFind[l] == recipeName) {
+        if (recipesFind[l] == recipeName ) {   //-----permet de filtrer la div filtre suivant le resultat barre de recherche
         for (var j = 0; j < ingredients.length; j++){
+            let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (!ingredientArray.includes(listOfIngredient)){
+            ingredientArray.push(listOfIngredient);
+            ingredientArray.sort();
+            }
+            let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (!applianceArray.includes(listOfAppliance)){
+            applianceArray.push(listOfAppliance);
+            applianceArray.sort();
+            }
             let ustensils = recipes[i].ustensils;
             for (var k = 0; k < ustensils.length; k++){
-                let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!ingredientArray.includes(listOfIngredient)){
-                ingredientArray.push(listOfIngredient);
-                ingredientArray.sort();
-
-                }
-                let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!applianceArray.includes(listOfAppliance)){
-                applianceArray.push(listOfAppliance);
-                applianceArray.sort();
-                }
                 let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if (!ustensilArray.includes(listOfUstensils)){
                 ustensilArray.push(listOfUstensils);
@@ -64,12 +63,12 @@ if(recipesFind.length>0){
         }
     }
 }
-    console.log("liste des ingredients")
-    console.log(ingredientArray);
-    console.log("liste des appareils")
-    console.log(applianceArray);
-    console.log("liste des ustensiles")
-    console.log(ustensilArray);
+    // console.log("liste des ingredients")
+    // console.log(ingredientArray);
+    // console.log("liste des appareils")
+    // console.log(applianceArray);
+    // console.log("liste des ustensiles")
+    // console.log(ustensilArray);
 }
     
 //***************************************************************************
