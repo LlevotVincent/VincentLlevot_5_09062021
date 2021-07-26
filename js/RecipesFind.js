@@ -181,10 +181,13 @@ function CreateCard() {
                     let cardIngredientList = document.createElement("p");
                     cardIngredientList.classList.add("card_ingredientList");
                     cardingredient.appendChild(cardIngredientList);
-                    if (recipesIngredients[j].unit != null) {
-                        cardIngredientList.innerText = recipesIngredients[j].ingredient + " : " + recipesIngredients[j].quantity + " " + recipesIngredients[j].unit;
-                    } else {
+                    if (recipesIngredients[j].unit == null) {
                         cardIngredientList.innerText = recipesIngredients[j].ingredient + " : " + recipesIngredients[j].quantity
+                    if(recipesIngredients[j].quantity == null) {
+                        cardIngredientList.innerText = recipesIngredients[j].ingredient
+                     }
+                    } else {
+                        cardIngredientList.innerText = recipesIngredients[j].ingredient + " : " + recipesIngredients[j].quantity + " " + recipesIngredients[j].unit;
                     }
                 }
             }

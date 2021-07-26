@@ -70,6 +70,7 @@ function DisplayApplianceArray() {
     applianceChevronDown.classList.add("hidden");
     applianceChevronUp.classList.remove("hidden");
     applianceResult = false;
+    createElementArray()
 
     for (var i = 0; i < applianceArray.length; i++) {
         let indexAppliance = document.createElement("p");
@@ -124,6 +125,7 @@ function DisplayUstensilArray() {
     ustensilChevronDown.classList.add("hidden");
     ustensilChevronUp.classList.remove("hidden");
     ustensilResult = false;
+    createElementArray()
 
     for (var i = 0; i < ustensilArray.length; i++) {
         let indexUstensil = document.createElement("p");
