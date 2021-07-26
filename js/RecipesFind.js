@@ -138,26 +138,6 @@ function CreateCard() {
             var recipesIngredients = recipes[i].ingredients;
 
             if (recipesFind[k] === recipeName) {
-                //  var card =  
-                // `<div id="main_grid">
-                //     <a href="#" class="cooking_recipe">
-                //     <div class="img_food a"></div>
-                //     <div class="recipe_Name d">
-                //         <h2 class="recipe_title"></h2>
-                //         <i class="far fa-clock"></i>
-                //         <p class="cardTime"></p>
-                //     </div>
-                //     <div class="ingredients b"></div>
-                //     <div class="step c"></div>
-                //   </a>
-                //   </div>`
-                //   const titleRecipes = document.getElementsByClassName("recipe_title")
-                //   titleRecipes.innerHTML = recipeName;
-                //  const cardTime = document.getElementsByClassName("cardTime")       
-                //   cardTime.innerHTML = recipeTime;
-
-                //  main.innerHTML = card
-
 
                 let recipeCard = document.createElement("a");
                 recipeCard.classList.add("cooking_recipe");
@@ -209,5 +189,15 @@ function CreateCard() {
                 }
             }
         }
+    }
+}
+
+
+initialRecipes()
+function initialRecipes () {
+    for (var i = 0; i < recipes.length; i++) {
+        let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        recipesFind.push(recipeName)
+        CreateCard(recipeName)
     }
 }

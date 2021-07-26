@@ -28,10 +28,10 @@ function DisplayIngredientArray() {
         inputIngredientsFilter.addEventListener("input", function () {
             let inputIngredient = inputIngredientsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexIngredient.textContent.includes(inputIngredient)) {
-                indexIngredient.remove()
+                indexIngredient.remove() //filtre la Div des ingredient dispo
             }
             if (indexIngredient.textContent.includes(inputIngredient)) {
-                divIngredient.appendChild(indexIngredient)
+                divIngredient.appendChild(indexIngredient) //regénère la Div des ingrédients dispo
             }
         })
     }
@@ -83,10 +83,10 @@ function DisplayApplianceArray() {
             let inputAppliance = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
             if (!indexAppliance.textContent.includes(inputAppliance)) {
-                indexAppliance.remove()
+                indexAppliance.remove()//filtre la Div des appareils dispo
             }
             if (indexAppliance.textContent.includes(inputAppliance)) {
-                divAppliance.appendChild(indexAppliance)
+                divAppliance.appendChild(indexAppliance) //regénère la Div des appareils dispo
             }
         })
     }
@@ -136,10 +136,10 @@ function DisplayUstensilArray() {
         inputustensilsFilter.addEventListener("keyup", function () {
             let inputUstensils = inputustensilsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexUstensil.textContent.includes(inputUstensils)) {
-                indexUstensil.remove()
+                indexUstensil.remove() //filtre la Div des ustensiles dispo
             }
             if (indexUstensil.textContent.includes(inputUstensils)) {
-                divUstensil.appendChild(indexUstensil)
+                divUstensil.appendChild(indexUstensil) //regénère la Div des ustensiles dispo
             }
         })
     }
@@ -197,7 +197,7 @@ function tagOpen() {
     // ----- referme le tag -----
     tagIcon.addEventListener("click", function () {
         tagDiv.remove()
-        // tagText.innerText.classList.remove("TextFilter_active");
+
         while (mainGrid.firstChild) {
             mainGrid.removeChild(mainGrid.firstChild);
         }

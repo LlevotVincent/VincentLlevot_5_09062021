@@ -91,6 +91,7 @@ function elementSearchBar(){
     ustensilArrayFilter = [];
     createElementArray ()
     if(inputSearchBar.length >2 ){
+        firstFind = false
         document.getElementById("error-message").classList.add("hidden")
         for (var i = 0 ; i < ingredientArray.length; i++){
             if(ingredientArray[i].includes(inputSearchBarSplit)){
