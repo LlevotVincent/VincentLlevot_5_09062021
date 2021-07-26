@@ -132,14 +132,15 @@ function CreateCard() {
 
     for (var k = 0; k < recipesFind.length; k++) {
         for (var i = 0; i < recipes.length; i++) {
-            var recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");;
+            var recipeName = recipes[i].name;
             var recipeTime = recipes[i].time;
             var recipeStep = recipes[i].description
             var recipesIngredients = recipes[i].ingredients;
 
-            if (recipesFind[k] === recipeName) {
+            if (recipesFind[k] === recipeName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
 
                 let recipeCard = document.createElement("a");
+                recipeCard.href= "#"
                 recipeCard.classList.add("cooking_recipe");
                 mainGrid.appendChild(recipeCard);
 

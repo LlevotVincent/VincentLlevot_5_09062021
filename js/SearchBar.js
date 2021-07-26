@@ -43,19 +43,19 @@ if(recipesFind.length>0){
         for (var j = 0; j < ingredients.length; j++){
             let ustensils = recipes[i].ustensils;
             for (var k = 0; k < ustensils.length; k++){
-                let listOfIngredient = ingredients[j].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!ingredientArray.includes(listOfIngredient)){
+                let listOfIngredient = ingredients[j].ingredient
+                if (!ingredientArray.includes(listOfIngredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
                 ingredientArray.push(listOfIngredient);
                 ingredientArray.sort();
 
                 }
-                let listOfAppliance = recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!applianceArray.includes(listOfAppliance)){
+                let listOfAppliance = recipes[i].appliance
+                if (!applianceArray.includes(listOfAppliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
                 applianceArray.push(listOfAppliance);
                 applianceArray.sort();
                 }
-                let listOfUstensils = ustensils[k].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                if (!ustensilArray.includes(listOfUstensils)){
+                let listOfUstensils = ustensils[k];
+                if (!ustensilArray.includes(listOfUstensils.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
                 ustensilArray.push(listOfUstensils);
                 ustensilArray.sort();
                 }

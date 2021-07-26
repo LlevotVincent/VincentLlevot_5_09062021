@@ -250,20 +250,21 @@ body{
     font-weight: 700;
 }
 .card_step {
+    width: 100%;
+    white-space: pre-wrap;
+    overflow: hidden;
+    box-sizing: border-box ;
+    padding: 0 10px 10px;
+}
+.cardStepText {
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;
+    margin: 0;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
-
-}
-.cardStepText {
-    margin: 0;
-    padding: 0;
-    overflow-wrap: break-word;
-    overflow: hidden;
-    text-overflow: clip;
-    height: 90%;
+    height: 95%;
 }
 .card_ingredients {
     padding-left: 10px;
@@ -277,7 +278,9 @@ body{
     font-weight: 400;
 }
 
-
+a{
+    color: inherit;
+    text-decoration: none;}
 /* div ingredient Array */
 
 #IngredientsArray{
