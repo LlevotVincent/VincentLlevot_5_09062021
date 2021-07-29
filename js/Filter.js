@@ -58,6 +58,7 @@ function CloseIngredientArray() {
     filterIngredients.classList.remove("activefilter");
     while (divIngredient.firstChild) {
         divIngredient.removeChild(divIngredient.firstChild);
+    ingredientArray = [];
     }
 }
 
@@ -123,6 +124,7 @@ function CloseAppliancesArray() {
     while (divAppliance.firstChild) {
         divAppliance.removeChild(divAppliance.firstChild);
     }
+    applianceArray = [];
 }
 
 // //***************************************************************************
@@ -189,6 +191,7 @@ function CloseUstensilsArray() {
     while (divUstensil.firstChild) {
         divUstensil.removeChild(divUstensil.firstChild);
     }
+    ustensilArray = [];
 }
 
 // //***************************************************************************
@@ -229,9 +232,9 @@ function tagOpen() {
     tagIcon.addEventListener("click", function () {
         tagDiv.remove()
 
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);
-        }
+        // while (mainGrid.firstChild) {
+        //     mainGrid.removeChild(mainGrid.firstChild);
+        // }
     })
 }
 
