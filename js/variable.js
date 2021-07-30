@@ -12,8 +12,9 @@ let applianceArrayFilter = [];
 let ustensilArrayFilter = [];
 
 var elementArrayFilter = [];
-var recipeFindSearchBar = [];
+// var recipeFindSearchBar = [];
 var recipesFind = [];
+var recipeFilter = []
 
 let ingredientArray = [];
 let applianceArray = [];

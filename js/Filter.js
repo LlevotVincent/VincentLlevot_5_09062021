@@ -32,7 +32,7 @@ function DisplayIngredientArray() {
         indexIngredient.innerText = ingredient;
         filterIngredients.classList.add("activefilter");
         indexIngredient.addEventListener("click", tagOpen);
-        // indexIngredient.addEventListener("click", RecipesToFind);
+        indexIngredient.addEventListener("click", RecipesToFindFilter);
         inputIngredientsFilter.addEventListener("input", function () {
             let inputIngredient = inputIngredientsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexIngredient.textContent.includes(inputIngredient)) {
@@ -58,7 +58,7 @@ function CloseIngredientArray() {
     filterIngredients.classList.remove("activefilter");
     while (divIngredient.firstChild) {
         divIngredient.removeChild(divIngredient.firstChild);
-    ingredientArray = [];
+        ingredientArray = [];
     }
 }
 
@@ -95,7 +95,7 @@ function DisplayApplianceArray() {
         indexAppliance.innerText = appliance;
         filterAppliances.classList.add("activefilter");
         indexAppliance.addEventListener("click", tagOpen);
-        // indexIngredient.addEventListener("click", RecipesToFind);
+        indexAppliance.addEventListener("click", RecipesToFindFilter);
         inputApplianceFilter.addEventListener("input", function () {
             let indexAppliance = inputApplianceFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexAppliance.textContent.includes(indexAppliance)) {
@@ -107,7 +107,7 @@ function DisplayApplianceArray() {
 
         })
         // firstFind = true
-      
+
     }
     return applianceResult = true; //utilisé pour changer la couleur du tag
 }
@@ -162,7 +162,7 @@ function DisplayUstensilArray() {
         indexUstensil.innerText = ustensil;
         filterUstensils.classList.add("activefilter");
         indexUstensil.addEventListener("click", tagOpen);
-        // indexIngredient.addEventListener("click", RecipesToFind);
+        indexUstensil.addEventListener("click", RecipesToFindFilter);
         inputustensilsFilter.addEventListener("input", function () {
             let indexUstensil = inputustensilsFilter.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             if (!indexUstensil.textContent.includes(indexUstensil)) {
@@ -174,7 +174,7 @@ function DisplayUstensilArray() {
 
         })
         // firstFind = true
-      
+
     }
     return ustensilResult = true; //utilisé pour changer la couleur du tag
 }
@@ -230,18 +230,49 @@ function tagOpen() {
 
     // ----- referme le tag -----
     tagIcon.addEventListener("click", function () {
+
+        console.log("j'ai cliqué sur " + tagText.textContent)
+        for (var i = 0; i< elementArrayFilter.length; i++) {
+            if (elementArrayFilter[i] == tagText.textContent) {
+                elementArrayFilter.splice(i, 1);
+                break
+            }
+        }
+        recipeFindSearchBar()
+        console.log(elementArrayFilter)
         tagDiv.remove()
 
         // while (mainGrid.firstChild) {
         //     mainGrid.removeChild(mainGrid.firstChild);
         // }
-    })
+    }
+    )
 }
 
 
+function RecipesToFindFilter() {
+    elementArrayFilter.push(this.textContent)
+    // console.log(elementArrayFilter)
+    for (var i = 0; i < recipesFind.length; i++) {
+        for (var j = 0; j < elementArrayFilter.length; j++) {
+        for (const itemingredient of recipesFind[i].ingredients) {
+            if (itemingredient.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") === (this.textContent)) {
+                recipeFilter.push(recipesFind[i]);
+            }
+        }
+        if (recipesFind[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.textContent)) {
+            recipeFilter.push(recipesFind[i]);
+        }
+        for (const itemustensil of recipesFind[i].ustensils) {
+            if (itemustensil.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(this.textContent)) {
+                recipeFilter.push(recipesFind[i]);
+            }
+        }
+    }
+    }
 
-
-
-
-
-
+    recipesFind = [].concat(recipeFilter)
+    recipesFind = [...new Set(recipesFind)]
+    recipeFilter = []
+    CreateCard(recipesFind)
+}
