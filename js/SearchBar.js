@@ -10,8 +10,8 @@ searchBar.addEventListener("input", recipeFindSearchBar);
 //**************** trie le tableau element suivant l'input de la barre de recherche ****************
 function recipeFindSearchBar() {
 
-    let inputSearchBar = searchBar.value
-    let inputSearchBarSplit = inputSearchBar.split(" ");
+    let inputSearchBar = searchBar.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    // let inputSearchBarSplit = inputSearchBar.split(" ");
     elementArraySearchBar = [];
     ingredientArrayFilter = [];
     applianceArrayFilter = [];
@@ -23,19 +23,19 @@ function recipeFindSearchBar() {
         document.getElementById("error-message").classList.add("hidden")
 
         for (var i = 0; i < recipes.length; i++) {
-            if (recipes[i].name.includes(inputSearchBar)) {
+            if (recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(inputSearchBar)) {
                 recipesFind.push(recipes[i]);
             }
             for (const item of recipes[i].ingredients) {
-                if (item.ingredient.includes(inputSearchBar)) {
+                if (item.ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(inputSearchBar)) {
                     recipesFind.push(recipes[i]);
                 }
             }
-            if (recipes[i].appliance.includes(inputSearchBar)) {
+            if (recipes[i].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(inputSearchBar)) {
                 recipesFind.push(recipes[i]);
             }
             for (const item of recipes[i].ustensils) {
-                if (item.includes(inputSearchBar)) {
+                if (item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(inputSearchBar)) {
                     recipesFind.push(recipes[i]);
                 }
             }
