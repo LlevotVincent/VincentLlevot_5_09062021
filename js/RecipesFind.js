@@ -11,32 +11,35 @@ function RecipesToFind() {
 
     recipeFindSearchBar = []
 
-    if (firstFind == true && recipesFind.length>0 ) {
+    if (firstFind == true && recipesFind.length > 0) {
         for (var p = 0; p < recipesFind.length; p++) {
             for (var k = 0; k < recipes.length; k++) {
                 let recipeName = recipes[k].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 let ingredients = recipes[k].ingredients
-                    if (recipesFind[p] === recipeName) {
-                        for (var q = 0; q < ingredients.length; q++) {
-                            let ingredient = ingredients[q].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                        if (ingredient.includes(this.textContent)) {
-                           if(!recipeFindSearchBar.includes(recipeName)){
-                            recipeFindSearchBar.push(recipeName)
-                        }
-                        }
-                        }
-                    let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    if (appliances.includes(this.textContent)) {
-                        if(!recipeFindSearchBar.includes(recipeName)){
-                        recipeFindSearchBar.push(recipeName);
-                        }
-                    }
-                    let ustensils = recipes[k].ustensils;
-                    for (var l = 0; l < ustensils.length; l++) {
-                        let ustensil = ustensils[l].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                        if (ustensil.includes(this.textContent)) {
-                            if(!recipeFindSearchBar.includes(recipeName)){
-                            recipeFindSearchBar.push(recipeName);
+                if (recipesFind[p] === recipeName) {
+                    for (var q = 0; q < ingredients.length; q++) {
+                        let ingredient = ingredients[q].ingredient.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        for (var r = 0; r < elementArrayFilter.length; r++) {
+                            let lastIndex = elementArrayFilter[elementArrayFilter.length-1];
+                            if (ingredient.includes(lastIndex)) {
+                                if (!recipeFindSearchBar.includes(recipeName)) {
+                                    recipeFindSearchBar.push(recipeName)
+                                }
+                            }
+                            let appliances = recipes[k].appliance.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                            if (appliances.includes(lastIndex)) {
+                                if (!recipeFindSearchBar.includes(recipeName)) {
+                                    recipeFindSearchBar.push(recipeName);
+                                }
+                            }
+                            let ustensils = recipes[k].ustensils;
+                            for (var l = 0; l < ustensils.length; l++) {
+                                let ustensil = ustensils[l].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                                if (ustensil.includes(lastIndex)) {
+                                    if (!recipeFindSearchBar.includes(recipeName)) {
+                                        recipeFindSearchBar.push(recipeName);
+                                    }
+                                }
                             }
                         }
                     }
@@ -140,7 +143,7 @@ function CreateCard() {
             if (recipesFind[k] === recipeName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")) {
 
                 let recipeCard = document.createElement("a");
-                recipeCard.href= "#"
+                recipeCard.href = "#"
                 recipeCard.classList.add("cooking_recipe");
                 mainGrid.appendChild(recipeCard);
 
@@ -184,9 +187,9 @@ function CreateCard() {
                     cardingredient.appendChild(cardIngredientList);
                     if (recipesIngredients[j].unit == null) {
                         cardIngredientList.innerText = recipesIngredients[j].ingredient + " : " + recipesIngredients[j].quantity
-                    if(recipesIngredients[j].quantity == null) {
-                        cardIngredientList.innerText = recipesIngredients[j].ingredient
-                     }
+                        if (recipesIngredients[j].quantity == null) {
+                            cardIngredientList.innerText = recipesIngredients[j].ingredient
+                        }
                     } else {
                         cardIngredientList.innerText = recipesIngredients[j].ingredient + " : " + recipesIngredients[j].quantity + " " + recipesIngredients[j].unit;
                     }
@@ -198,7 +201,8 @@ function CreateCard() {
 
 
 initialRecipes()
-function initialRecipes () {
+function initialRecipes() {
+recipesFind = [];
     for (var i = 0; i < recipes.length; i++) {
         let recipeName = recipes[i].name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         recipesFind.push(recipeName)

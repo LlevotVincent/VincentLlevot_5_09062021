@@ -190,6 +190,7 @@ function tagOpen() {
     tagText.classList.add("tagText")
     tagIcon.classList.add("far", "fa-times-circle");
     tagText.innerText = this.textContent;
+    elementArrayFilter.push(this.textContent)
 
     CloseIngredientArray();
     CloseAppliancesArray();
@@ -198,11 +199,20 @@ function tagOpen() {
 
     // ----- referme le tag -----
     tagIcon.addEventListener("click", function () {
-        tagDiv.remove()
 
-        while (mainGrid.firstChild) {
-            mainGrid.removeChild(mainGrid.firstChild);
+        console.log("j'ai cliqué sur " + tagText.textContent)
+        for (var i = 0; i< elementArrayFilter.length; i++) {
+            if (elementArrayFilter[i] == tagText.textContent) {
+                elementArrayFilter.splice(i, 1);
+                break
+            }
         }
+        tagDiv.remove()
+        // while (mainGrid.firstChild) {
+        //     mainGrid.removeChild(mainGrid.firstChild);
+        // }
+        elementSearchBar()
+
     })
 }
 

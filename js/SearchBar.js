@@ -9,6 +9,7 @@ function createElementArray (){
     ingredientArray = []
     applianceArray = []
     ustensilArray = []
+
 if(recipesFind.length>0){
     for (var l = 0; l < recipesFind.length; l++) {   
     for (var i = 0; i < recipes.length; i++) {
@@ -90,6 +91,10 @@ function elementSearchBar(){
     applianceArrayFilter = [];
     ustensilArrayFilter = [];
     createElementArray ()
+    if(inputSearchBar.length <= 2 ){
+
+        initialRecipes()
+    }
     if(inputSearchBar.length >2 ){
         firstFind = false
         document.getElementById("error-message").classList.add("hidden")
@@ -128,10 +133,11 @@ function elementSearchBar(){
         }
     console.log("liste des éléments filtrés");
     console.log(elementArraySearchBar);
-    RecipesToFind(elementArraySearchBar);     
+    RecipesToFind();     
     }   
     if(elementArraySearchBar.length == 0 && inputSearchBar.length >2 ) {
         document.getElementById("error-message").classList.remove("hidden")
     } 
+
 }
   
